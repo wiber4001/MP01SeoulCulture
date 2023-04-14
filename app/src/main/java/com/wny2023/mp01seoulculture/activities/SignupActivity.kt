@@ -1,5 +1,6 @@
 package com.wny2023.mp01seoulculture.activities
 
+
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
@@ -136,8 +137,6 @@ class SignupActivity : AppCompatActivity() {
 
     }//onCreate()
 
-
-
     //이메일 검증용 변수
     val emailValidation = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
     fun checkEmail():Boolean{
@@ -181,94 +180,80 @@ class SignupActivity : AppCompatActivity() {
     }
 
     //정보 입력 확인
-    private fun infoConfirm(){
-        if (memberNew.id.length==0){
+
+    private fun infoConfirm() {
+        if (memberNew.id.length == 0) {
             Toast.makeText(this, "아이디는 필수입니다.", Toast.LENGTH_SHORT).show()
             binding.etId.requestFocus()
             return
-        }else if (memberNew.pass.length==0){
+        } else if (memberNew.pass.length == 0) {
             Toast.makeText(this, "비밀번호를 확인해주십시오.", Toast.LENGTH_SHORT).show()
             binding.etPass1.requestFocus()
             return
-        }else
-            verifySameId()
-    }
-
-    //기존 가입확인
-    private fun verifySameId(){
-        val retrofit:Retrofit = RetrofitHelper.getRetrofitInstance("http://wny2023.dothome.co.kr")
-        var retrofitService:RetrofitService = retrofit.create(RetrofitService::class.java)
-        var call:Call<String> = retrofitService.idConfirm(memberNew.id)
-        call.enqueue(object :Callback<String>{
-            override fun onResponse(call: Call<String>, response: Response<String>) {
-                var p:Boolean =response.body().toBoolean()
-                if(p){
-                    Toast.makeText(this@SignupActivity, "신규가입이 가능한 아이디입니다.", Toast.LENGTH_SHORT).show()
-                    signComplete()
-                }else{
-                    Toast.makeText(this@SignupActivity, "이미 가입된 아이디입니다.", Toast.LENGTH_SHORT).show()
-                    binding.etId.requestFocus()
-                    return
+        } else {
+            var retrofit: Retrofit =
+                RetrofitHelper.getRetrofitInstance("http://wny2023.dothome.co.kr")
+            var retrofitService: RetrofitService = retrofit.create(RetrofitService::class.java)
+            var call: Call<String> = retrofitService.idConfirm(memberNew.id)
+            call.enqueue(object : Callback<String> {
+                override fun onResponse(call: Call<String>, response: Response<String>) {
+                    var p: Boolean = response.body().toBoolean()
+                    if (p) {
+                        var builder = AlertDialog.Builder(this@SignupActivity)
+                        builder.setTitle("신규가입 가능합니다.")
+                            .setMessage("id: ${memberNew.id}\npass:${memberNew.pass}\n신규회원가입")
+                            .setPositiveButton("확인", { dialog, which ->
+                                    //1.레트로핏 객체 생성
+                                    val retrofit: Retrofit =
+                                        RetrofitHelper.getRetrofitInstance("Http://wny2023.dothome.co.kr")
+                                    //2.레트로핏 서비스 객체 생성
+                                    val retrofitService: RetrofitService =
+                                        retrofit.create(RetrofitService::class.java)
+                                    //3.call객체 생성해서 보내기
+                                    //data부분
+                                    var datapart = HashMap<String, String>()
+                                    datapart.put("id", memberNew.id)
+                                    datapart.put("pass", memberNew.pass)
+                                    datapart.put("email", memberNew.email)
+                                    datapart.put("path", memberNew.path)
+                                    //file부분
+                                    var filepart: MultipartBody.Part? = null
+                                    if (memberNew.imgUrl != null) {
+                                        val file = File(memberNew.imgUrl)
+                                        val requestFile =
+                                            RequestBody.create(MediaType.parse("image/*"), file)
+                                        filepart = MultipartBody.Part.createFormData("img",file.name, requestFile)
+                                    }
+                                    var call: Call<String> = retrofitService.sendServer(datapart, filepart)
+                                    call.enqueue(object : Callback<String> {
+                                        override fun onResponse(call: Call<String>, response: Response<String>) {
+                                            var msg: String = response.body().toString()
+                                            Toast.makeText(this@SignupActivity,"${msg}",Toast.LENGTH_SHORT).show()
+                                            var intent = Intent(this@SignupActivity,LoginActivity::class.java)
+                                            intent.putExtra("object", memberNew)
+                                            startActivity(intent)
+                                            finish()
+                                        }
+                                        override fun onFailure(call: Call<String>, t: Throwable) {
+                                            Toast.makeText(this@SignupActivity,"${t.message}",Toast.LENGTH_SHORT).show()
+                                        }
+                                    })
+                                }).setNegativeButton(
+                                "취소",
+                                DialogInterface.OnClickListener { dialog, which ->
+                                    Toast.makeText(this@SignupActivity,"가입을 취소합니다.",Toast.LENGTH_SHORT).show()
+                                }).create()
+                        builder.show()
+                    } else {
+                        Toast.makeText(this@SignupActivity, "이미 가입된 아이디입니다.", Toast.LENGTH_SHORT).show()
+                        binding.etId.requestFocus()
+                        return
+                    }
                 }
-            }
-            override fun onFailure(call: Call<String>, t: Throwable) {
-                Toast.makeText(this@SignupActivity, "서버오류, 가입처리 불가", Toast.LENGTH_SHORT).show()
-            }
-        })
-
-    }
-
-    //가입정보 서버에 전송전 확인
-    private fun signComplete(){
-        var builder = AlertDialog.Builder(this)
-        builder.setMessage("id: ${memberNew.id}\npass:신규회원가입")
-            .setPositiveButton("확인",DialogInterface.OnClickListener { dialog, which ->
-                sendInfoToServer()
-            }).setNegativeButton("취소",DialogInterface.OnClickListener { dialog, which ->
-                Toast.makeText(this@SignupActivity, "가입을 취소합니다.", Toast.LENGTH_SHORT).show()
+                override fun onFailure(call: Call<String>, t: Throwable) {
+                    Toast.makeText(this@SignupActivity, "서버오류, 가입처리 불가", Toast.LENGTH_SHORT).show()
+                }
             })
-    }
-
-    private fun sendInfoToServer(){
-        //1.레트로핏 객체 생성
-        val retrofit: Retrofit = RetrofitHelper.getRetrofitInstance("Http://wny2023.dothome.co.kr")
-        //2.레트로핏 서비스 객체 생성
-        val retrofitService: RetrofitService = retrofit.create(RetrofitService::class.java)
-        //3.call객체 생성해서 보내기
-
-        //data부분
-        var datapart= HashMap<String,String>()
-        datapart.put("id",memberNew.id)
-        datapart.put("pass",memberNew.pass)
-        datapart.put("email",memberNew.email)
-        datapart.put("path",memberNew.path)
-
-        //file부분
-        var filepart: MultipartBody.Part? = null
-        if (memberNew.imgUrl!=null){
-            val file = File(memberNew.imgUrl)
-            val requestFile = RequestBody.create(MediaType.parse("image/*"), file)
-            filepart = MultipartBody.Part.createFormData("img", file.name, requestFile)
         }
-        var call: Call<String> = retrofitService.sendServer(datapart,filepart)
-        call.enqueue(object :Callback<String> {
-            override fun onResponse(call: Call<String>, response: Response<String>) {
-                var msg:String = response.body().toString()
-                Toast.makeText(this@SignupActivity, "${msg}", Toast.LENGTH_SHORT).show()
-                Log.i("datafileretrofit","${response.body()}")
-
-                var intent = Intent(this@SignupActivity,LoginActivity::class.java)
-                intent.putExtra("object",memberNew)
-                startActivity(intent)
-                finish()
-            }
-            override fun onFailure(call: Call<String>, t: Throwable) {
-                Toast.makeText(this@SignupActivity, "${t.message}", Toast.LENGTH_SHORT).show()
-                Log.i("TAG", t.message.toString())
-            }
-
-        })
-
     }
-
 }
