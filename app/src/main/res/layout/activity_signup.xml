@@ -1,9 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mp_400"
     tools:context=".activities.SignupActivity">
+    <LinearLayout
+        android:id="@+id/shell_layout"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+        <LinearLayout
+            android:id="@+id/select_layout"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:padding="12dp">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_profile"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@color/mp_red"
+                android:src="@drawable/profile02"
+                android:layout_width="120dp"
+                android:layout_height="120dp"/>
+            <Button
+                android:id="@+id/btn_slectphoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_photo"
+                android:fontFamily="@font/mclassic"
+                android:layout_gravity="bottom"/>
+        </LinearLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            app:counterEnabled="true"
+            app:counterMaxLength="10">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_id"
+                android:fontFamily="@font/mclassic"
+                android:textColor="@color/mp_800"
+                android:textSize="16sp"
+                android:background="@color/mp_600"
+                android:hint="@string/et_id"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_email"
+                android:fontFamily="@font/mclassic"
+                android:textColor="@color/mp_800"
+                android:textSize="16sp"
+                android:background="@color/mp_600"
+                android:hint="@string/et_email"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:inputType="textEmailAddress"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true"
+            app:counterEnabled="true"
+            app:counterMaxLength="10"
+            android:layout_gravity="center_horizontal">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_pass1"
+                android:fontFamily="@font/mclassic"
+                android:textColor="@color/mp_800"
+                android:textSize="16sp"
+                android:background="@color/mp_600"
+                android:hint="@string/et_pass1"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true"
+            app:counterEnabled="true"
+            app:counterMaxLength="10"
+            android:layout_gravity="center_horizontal">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_pass2"
+                android:fontFamily="@font/mclassic"
+                android:textColor="@color/mp_800"
+                android:textSize="16sp"
+                android:background="@color/mp_600"
+                android:hint="@string/et_pass2"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <Button
+            android:id="@+id/btn_signup"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:textSize="16sp"
+            android:backgroundTint="@color/mp_800"
+            android:text="@string/btn_signup"
+            android:fontFamily="@font/mclassic"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>
