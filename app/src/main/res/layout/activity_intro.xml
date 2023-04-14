@@ -12,7 +12,7 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:src="@drawable/logo"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="120dp"
         android:layout_centerHorizontal="true"/>
     <LinearLayout
         android:id="@+id/layout_btns"
@@ -41,12 +41,44 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
+    <TextView
+        android:id="@+id/tv_simplelogin"
+        android:text="@string/tv_simplelogin"
+        android:fontFamily="@font/mclassic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_btns"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/mp_800"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"/>
     <LinearLayout
         android:id="@+id/layout_simplebtns"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
+        android:orientation="horizontal"
+        android:layout_below="@id/tv_simplelogin"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:background="@drawable/bg_simplelogin">
+        <ImageView
+            android:id="@+id/img_kakao"
+            android:src="@drawable/icon_kakako"
+            android:layout_marginRight="16dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
+        <ImageView
+            android:id="@+id/img_naver"
+            android:src="@drawable/icon_naver"
+            android:layout_marginRight="16dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
+        <ImageView
+            android:id="@+id/img_google"
+            android:src="@drawable/icon_google"
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
     </LinearLayout>
 
 </RelativeLayout>
