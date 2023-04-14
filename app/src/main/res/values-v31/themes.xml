@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.MP01SeoulCulture" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/mp_600</item>
+        <item name="colorPrimaryVariant">@color/mp_800</item>
+        <item name="colorOnPrimary">@color/mp_400</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/mp_400</item>
+        <item name="colorSecondaryVariant">@color/mp_600</item>
+        <item name="colorOnSecondary">@color/mp_800</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <item name="android:windowSplashScreenBackground">@color/mp_400</item>
+
+    </style>
+</resources>
