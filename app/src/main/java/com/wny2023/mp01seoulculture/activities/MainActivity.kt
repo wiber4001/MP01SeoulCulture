@@ -45,8 +45,13 @@ class MainActivity : AppCompatActivity() {
         //1.헤더 바인딩
         val dnvHeaderBinding: HeaderDnvBinding = HeaderDnvBinding.bind(binding.menuDnv.getHeaderView(0))
         //2.프로필사진
-        Log.i("PROFILE","${memberIn.imgUrl}")
-//        Glide.with(this).load(memberIn.imgUrl).into(dnvHeaderBinding.imgProfile)
+//        fun removefirstNchars(s: String?, n: Int): String? {
+//            return if (s == null || s.length < n) {
+//                s
+//            } else s.substring(n)
+//        }
+        var urlGlide:String ="ftp://wny2023@wny2023.dothome.co.kr/html/mpproject${memberIn.imgUrl}"
+        Glide.with(this).load(urlGlide).into(dnvHeaderBinding.imgProfile)
         //3.아이디
         dnvHeaderBinding.tvId.text=memberIn.id
 

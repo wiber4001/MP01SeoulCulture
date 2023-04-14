@@ -51,6 +51,20 @@ class LoginActivity : AppCompatActivity() {
 
 
     //로그인 검증
+    private fun confirmLogin(member:Member){
+        val builder =AlertDialog.Builder(this)
+        builder.setTitle("로그인 정보").setMessage("${member.id}\n로 로그인합니다.\n")
+            .setPositiveButton("확인", DialogInterface.OnClickListener { dialog, which ->
+                var intent =Intent(this@LoginActivity,MainActivity::class.java)
+                intent.putExtra("object",member)
+                startActivity(intent)
+            }).setNegativeButton("취소",DialogInterface.OnClickListener { dialog, which ->
+                Toast.makeText(this@LoginActivity, "취소하셨습니다.", Toast.LENGTH_SHORT).show()
+            }).setCancelable(false).create()
+        builder.show()
+    }
+
+    //로그인 검증
     private fun loginVerify(member: Member){
         //서버에서 불러오기
         //1.레트로핏 객체 생성
@@ -62,25 +76,15 @@ class LoginActivity : AppCompatActivity() {
         call.enqueue(object :Callback<Member>{
             override fun onResponse(call: Call<Member>, response: Response<Member>) {
                 var echo:Member = response.body() as Member
-                Log.i("ECHOMY","${response.body().toString()}")
+                Log.i("ECHOMY","${echo.imgUrl}")
                 if(echo.id.length!=0){
-                    Toast.makeText(this@LoginActivity, "로그인 성공", Toast.LENGTH_SHORT).show()
-//                    val builder =AlertDialog.Builder(this@LoginActivity)
-//                    builder.setTitle("로그인 정보").setMessage("${member.id}\n로 로그인합니다.\n")
-//                        .setPositiveButton("확인", DialogInterface.OnClickListener { dialog, which ->
-//                            var intent =Intent(this@LoginActivity,MainActivity::class.java)
-//                            intent.putExtra("object",member)
-//                            startActivity(intent)
-//                        }).setNegativeButton("취소",DialogInterface.OnClickListener { dialog, which ->
-//                            Toast.makeText(this@LoginActivity, "취소하셨습니다.", Toast.LENGTH_SHORT).show()
-//                        }).setCancelable(false).create()
-//                    builder.show()
+                    confirmLogin(echo)
                 }else{
                     Toast.makeText(this@LoginActivity, "가입정보가 확인되지 않습니다.", Toast.LENGTH_SHORT).show()
                 }
             }
             override fun onFailure(call: Call<Member>, t: Throwable) {
-                Toast.makeText(this@LoginActivity, "서버오류:${t.message}", Toast.LENGTH_SHORT).show()
+                TODO("Not yet implemented")
             }
 
         })
