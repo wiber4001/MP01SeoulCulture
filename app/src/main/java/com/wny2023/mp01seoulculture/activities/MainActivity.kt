@@ -7,10 +7,16 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.bumptech.glide.Glide
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.wny2023.mp01seoulculture.R
 import com.wny2023.mp01seoulculture.databinding.ActivityMainBinding
 import com.wny2023.mp01seoulculture.databinding.HeaderDnvBinding
+import com.wny2023.mp01seoulculture.fragments.ContentFragment
+import com.wny2023.mp01seoulculture.fragments.FavoritFragment
+import com.wny2023.mp01seoulculture.fragments.ReviewFragment
 import com.wny2023.mp01seoulculture.models.Member
 
 class MainActivity : AppCompatActivity() {
@@ -20,6 +26,11 @@ class MainActivity : AppCompatActivity() {
     lateinit var drawerToggle: ActionBarDrawerToggle
 
     var memberIn =Member("","","","","")
+
+    var fragements = mutableListOf(ContentFragment(),FavoritFragment(),ReviewFragment())
+
+    lateinit var bnv:BottomNavigationView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -76,6 +87,21 @@ class MainActivity : AppCompatActivity() {
             binding.root.closeDrawer(binding.menuDnv)
             false
         }
+
+        //fragments 보여주기
+        supportFragmentManager.beginTransaction().add(R.id.container_fragments,fragements[0]).commit()
+        //bottom navigation에 연결하기
+        bnv=binding.menuBnv
+        bnv.setOnClickListener{item->
+            when(item.id){
+                R.id.bnv_main -> supportFragmentManager.beginTransaction().replace(R.id.bnv_main,fragements[0]).commit()
+                R.id.bnv_favorit -> supportFragmentManager.beginTransaction().replace(R.id.bnv_favorit,fragements[1]).commit()
+                R.id.bnv_review -> supportFragmentManager.beginTransaction().replace(R.id.bnv_review,fragements[2]).commit()
+            }
+            true
+        }
+
+
     }//onCreate()
 
     private fun clickFavorit(){

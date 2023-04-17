@@ -32,6 +32,9 @@ interface RetrofitService {
     fun sendServer(@PartMap dataPart:Map<String,String>, @Part filePart: MultipartBody.Part?) :Call<String>
 
     //행사정보 json으로 불러오기
-    @GET("culturalEventInfo/1/500/")
+    @GET("/565842635777696236346c4b424264/json/culturalEventInfo/1/500/")
     fun loadServerAll() : Call<Response>
+
+//    @GET("/565842635777696236346c4b424264/json/culturalEventInfo/1/1/")
+//    fun loadServerAll2() : Call<String>
 }
