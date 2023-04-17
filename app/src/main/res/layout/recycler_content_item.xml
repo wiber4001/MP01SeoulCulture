@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="200dp">
+    android:layout_height="200dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fadingEdge="vertical"
+    app:cardBackgroundColor="@color/mp_800">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -12,6 +15,7 @@
             android:layout_width="160dp"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
+            android:background="@color/mp_red"
             android:src="@drawable/profile02"/>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -23,7 +27,7 @@
             android:padding="8dp">
             <TextView
                 android:id="@+id/tv_evtitle"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
                 android:ems="15"
@@ -33,44 +37,42 @@
                 android:fontFamily="@font/mclassic"/>
             <TextView
                 android:id="@+id/tv_evaddr"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
-                android:ems="15"
-                android:textSize="16sp"
-                android:textStyle="bold"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                android:background="@color/mp_600"
                 android:text="@string/item_addr"
                 android:fontFamily="@font/mclassic"/>
             <TextView
-                android:id="@+id/tv_evduring"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:ems="15"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:text="@string/item_during"
-                android:fontFamily="@font/mclassic"/>
-            <TextView
                 android:id="@+id/tv_evdistrict"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
-                android:ems="15"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:text="@string/item_district"
                 android:fontFamily="@font/mclassic"/>
             <TextView
-                android:id="@+id/tv_evprogram"
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_evduring"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minLines="4"
-                android:ems="15"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:text="@string/item_program"
+                android:layout_marginBottom="4dp"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                android:background="@color/mp_600"
+                android:text="@string/item_during"
                 android:fontFamily="@font/mclassic"/>
+            <TextView
+                android:id="@+id/tv_evprogram"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                android:text="@string/item_program"
+                android:fontFamily="@font/mclassic"
+                android:layout_weight="1"/>
         </LinearLayout>
     </RelativeLayout>
 </com.google.android.material.card.MaterialCardView>

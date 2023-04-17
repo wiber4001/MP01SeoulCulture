@@ -2,11 +2,8 @@ package com.wny2023.mp01seoulculture.activities
 
 import android.content.DialogInterface
 import android.content.Intent
-import android.graphics.Color
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
@@ -45,11 +42,6 @@ class MainActivity : AppCompatActivity() {
         //1.헤더 바인딩
         val dnvHeaderBinding: HeaderDnvBinding = HeaderDnvBinding.bind(binding.menuDnv.getHeaderView(0))
         //2.프로필사진
-//        fun removefirstNchars(s: String?, n: Int): String? {
-//            return if (s == null || s.length < n) {
-//                s
-//            } else s.substring(n)
-//        }
         var urlGlide:String ="http://wny2023.dothome.co.kr/mpproject/${memberIn.imgUrl}"
         Glide.with(this).load(urlGlide).into(dnvHeaderBinding.imgProfile)
         //3.아이디
