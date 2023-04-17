@@ -92,8 +92,8 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().add(R.id.container_fragments,fragements[0]).commit()
         //bottom navigation에 연결하기
         bnv=binding.menuBnv
-        bnv.setOnClickListener{item->
-            when(item.id){
+        bnv.setOnItemReselectedListener{item->
+            when(item.itemId){
                 R.id.bnv_main -> supportFragmentManager.beginTransaction().replace(R.id.bnv_main,fragements[0]).commit()
                 R.id.bnv_favorit -> supportFragmentManager.beginTransaction().replace(R.id.bnv_favorit,fragements[1]).commit()
                 R.id.bnv_review -> supportFragmentManager.beginTransaction().replace(R.id.bnv_review,fragements[2]).commit()

@@ -1,11 +1,15 @@
 package com.wny2023.mp01seoulculture.adapters
 
 import android.app.Activity
+import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
+import android.view.View.OnClickListener
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
+import com.wny2023.mp01seoulculture.activities.ContentDetailActivity
 import com.wny2023.mp01seoulculture.databinding.RecyclerContentItemBinding
 import com.wny2023.mp01seoulculture.models.Item
 
@@ -25,6 +29,12 @@ class ContentAdapter (var context:Activity, var items:MutableList<Item>): Adapte
         holder.binding.tvEvtitle.text=item.TITLE
         holder.binding.tvEvprogram.text=item.PROGRAM
         Glide.with(context).load(item.MAIN_IMG).into(holder.binding.imgEvent)
+
+        holder.binding.root.setOnClickListener(View.OnClickListener {
+            val intent=Intent(context,ContentDetailActivity::class.java)
+            intent.putExtra("object",item)
+            intent.run { context.startActivity(intent) }
+        })
     }
 
 }

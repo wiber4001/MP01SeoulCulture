@@ -15,8 +15,8 @@
     <string name="menu_home">메인</string>
     <string name="menu_favorit">즐겨찾기</string>
     <string name="menu_review">리뷰</string>
-    <string name="item_favorit">내 즐겨찾기</string>
-    <string name="item_review">내 리뷰</string>
+    <string name="item_favorit">좋아한 행사</string>
+    <string name="item_review">리뷰 보기</string>
     <string name="logout">로그아웃</string>
     <string name="profile_edit">프로필 사진 변경</string>
     <string name="open">open</string>
@@ -26,5 +26,9 @@
     <string name="item_district">행사구</string>
     <string name="item_during">행사기간</string>
     <string name="item_program">프로그램소개</string>
+    <string name="item_fee">행사요금 0000원</string>
+    <string name="item_link">http://www.naver.com</string>
+    <string name="item_fav">좋아요</string>
+    <string name="item_back">메인으로</string>
 
 </resources>
