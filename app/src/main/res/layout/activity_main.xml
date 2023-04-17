@@ -1,11 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mp_400"
     tools:context=".activities.MainActivity">
+<!-- 루트 컨텐츠 레이아웃-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/layout_appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/container_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@drawable/bg_toolbar">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="4dp">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_search"
+                            android:hint="@string/et_search"
+                            android:fontFamily="@font/mclassic"
+                            android:textColor="@color/mp_800"
+                            android:background="@color/mp_600"
+                            android:inputType="text"
+                            android:imeOptions="actionSearch"
+                            android:drawableRight="@drawable/ic_search"
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <Spinner
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="16dp"
+                        android:background="@drawable/bg_spinner"/>
+                    </LinearLayout>
+                </androidx.appcompat.widget.Toolbar>
+            </com.google.android.material.appbar.AppBarLayout>
 
+        <LinearLayout
+            android:layout_below="@+id/layout_appbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <FrameLayout
+                android:id="@+id/container_fragments"
+                android:layout_width="match_parent"
+                android:background="@color/mp_400"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/menu_bnv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:menu="@menu/menu_bottom"
+                app:itemTextColor="@color/color_select_item"
+                app:itemIconTint="@color/color_select_item"
+                android:background="@color/mp_600"
+                app:labelVisibilityMode="selected"
+                android:theme="@style/Widget.BottomNavigationView"/>
+        </LinearLayout>
 
+    </RelativeLayout>
+<!-- drawer navigation 메뉴-->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/menu_dnv"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/mp_600"
+        app:itemTextColor="@color/color_select_menu"
+        app:itemIconTint="@color/color_select_item"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/header_dnv"
+        app:menu="@menu/menu_navigation"
+        app:labelVisibilityMode="selected"
+        android:theme="@style/Widget.NavigationView"/>
 
-</RelativeLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

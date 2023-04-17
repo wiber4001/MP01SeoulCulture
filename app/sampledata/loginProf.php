@@ -13,7 +13,10 @@
     if($result){
         $row=mysqli_fetch_array($result, MYSQLI_ASSOC);//연관배열로 설정
         echo json_encode($row);
-    }else echo json_encode($row);
+    }else {
+        $row=array('no'=> 0,'id'=>'','pass'=>'','email'=>'','imgUrl'=>'','path'=>'','date'=>'');
+        echo json_encode($row);
+    }
 
     // $row=mysqli_fetch_array($result, MYSQLI_ASSOC);
 

@@ -1,14 +1,18 @@
 package com.wny2023.mp01seoulculture.network
 
+import com.wny2023.mp01seoulculture.models.Item
 import com.wny2023.mp01seoulculture.models.Member
+import com.wny2023.mp01seoulculture.models.Response
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
 import retrofit2.http.PartMap
+import retrofit2.http.Query
 
 interface RetrofitService {
 
@@ -22,7 +26,15 @@ interface RetrofitService {
     @POST("mpproject/loadMembers.php")
     fun idConfirm(@Field("id") id:String) :Call<String>
 
+    //회원가입정보 서버저장
     @Multipart
     @POST("mpproject/signupPostDB.php")
     fun sendServer(@PartMap dataPart:Map<String,String>, @Part filePart: MultipartBody.Part?) :Call<String>
+
+    //행사정보 json으로 불러오기
+    @GET("/565842635777696236346c4b424264/json/culturalEventInfo/1/500/")
+    fun loadServerAll() : Call<Response>
+
+//    @GET("/565842635777696236346c4b424264/json/culturalEventInfo/1/1/")
+//    fun loadServerAll2() : Call<String>
 }

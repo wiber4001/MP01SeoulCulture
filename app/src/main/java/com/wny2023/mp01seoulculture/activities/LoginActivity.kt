@@ -45,17 +45,19 @@ class LoginActivity : AppCompatActivity() {
         binding.btnLogin.setOnClickListener {
             memberI.id=binding.etId.text.toString()
             memberI.pass=binding.etPass.text.toString()
-            confirmLogin(memberI) }
+            loginVerify(memberI) }
 
     }//onCreate()
 
 
-    //로그인 확인창 띄우기
+    //로그인 검증
     private fun confirmLogin(member:Member){
         val builder =AlertDialog.Builder(this)
         builder.setTitle("로그인 정보").setMessage("${member.id}\n로 로그인합니다.\n")
             .setPositiveButton("확인", DialogInterface.OnClickListener { dialog, which ->
-                loginVerify(member)
+                var intent =Intent(this@LoginActivity,MainActivity::class.java)
+                intent.putExtra("object",member)
+                startActivity(intent)
             }).setNegativeButton("취소",DialogInterface.OnClickListener { dialog, which ->
                 Toast.makeText(this@LoginActivity, "취소하셨습니다.", Toast.LENGTH_SHORT).show()
             }).setCancelable(false).create()
@@ -72,35 +74,15 @@ class LoginActivity : AppCompatActivity() {
         var call:Call<Member> = retrofitService.loginProf(member.id,member.pass)
         //3.콜백함수 부르기
         call.enqueue(object :Callback<Member>{
-            //            override fun onResponse(call: Call<String>, response: Response<String>) {
-//                var echo:String = response.body().toString()
-//                Log.i("ECHOMY","${echo}")
-//                var msg:Boolean = response.body().toBoolean()
-//                if(msg){
-//                    Toast.makeText(this@LoginActivity, "로그인 성공", Toast.LENGTH_SHORT).show()
-//                    var intent =Intent(this@LoginActivity,MainActivity::class.java)
-//                    intent.putExtra("object",member)
-//                    startActivity(intent)
-//                }else{
-//                    Toast.makeText(this@LoginActivity, "가입정보가 확인되지 않습니다.", Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//            override fun onFailure(call: Call<String>, t: Throwable) {
-//                Toast.makeText(this@LoginActivity, "서버오류:${t.message}", Toast.LENGTH_SHORT).show()
-//            }
             override fun onResponse(call: Call<Member>, response: Response<Member>) {
                 var echo:Member = response.body() as Member
-                Log.i("ECHOMY","${response.body().toString()}")
+                Log.i("ECHOMY","${echo.imgUrl}")
                 if(echo.id.length!=0){
-                    Toast.makeText(this@LoginActivity, "로그인 성공", Toast.LENGTH_SHORT).show()
-                    var intent =Intent(this@LoginActivity,MainActivity::class.java)
-                    intent.putExtra("object",member)
-                    startActivity(intent)
+                    confirmLogin(echo)
                 }else{
                     Toast.makeText(this@LoginActivity, "가입정보가 확인되지 않습니다.", Toast.LENGTH_SHORT).show()
                 }
             }
-
             override fun onFailure(call: Call<Member>, t: Throwable) {
                 TODO("Not yet implemented")
             }

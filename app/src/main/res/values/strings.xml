@@ -11,5 +11,20 @@
     <string name="et_pass1">비밀번호</string>
     <string name="et_pass2">비밀번호확인</string>
     <string name="et_email">이메일</string>
+    <string name="et_search">검색어입력</string>
+    <string name="menu_home">메인</string>
+    <string name="menu_favorit">즐겨찾기</string>
+    <string name="menu_review">리뷰</string>
+    <string name="item_favorit">내 즐겨찾기</string>
+    <string name="item_review">내 리뷰</string>
+    <string name="logout">로그아웃</string>
+    <string name="profile_edit">프로필 사진 변경</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
+    <string name="item_title">행사이름</string>
+    <string name="item_addr">행사주소</string>
+    <string name="item_district">행사구</string>
+    <string name="item_during">행사기간</string>
+    <string name="item_program">프로그램소개</string>
 
 </resources>

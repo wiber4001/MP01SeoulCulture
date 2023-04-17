@@ -23,4 +23,11 @@
         <item name="android:windowBackground">@drawable/bg_splash</item>
         <item name="android:windowFullscreen">true</item>
     </style>
+    <style name="Widget.BottomNavigationView" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="fontFamily">@font/mclassic</item>
+    </style>
+    <style name="Widget.NavigationView" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="fontFamily">@font/mclassic</item>
+        <item name="background">@color/mp_600</item>
+    </style>
 </resources>
