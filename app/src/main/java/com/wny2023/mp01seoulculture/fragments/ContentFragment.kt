@@ -14,6 +14,7 @@ import com.wny2023.mp01seoulculture.R
 import com.wny2023.mp01seoulculture.R.*
 import com.wny2023.mp01seoulculture.R.layout.*
 import com.wny2023.mp01seoulculture.adapters.ContentAdapter
+import com.wny2023.mp01seoulculture.databinding.FragmentContentBinding
 import com.wny2023.mp01seoulculture.models.Item
 import com.wny2023.mp01seoulculture.models.Response
 import com.wny2023.mp01seoulculture.network.RetrofitHelper
@@ -28,30 +29,30 @@ class ContentFragment: Fragment(){
     var items:MutableList<Item> = mutableListOf()
     lateinit var contentAdapter: ContentAdapter
     lateinit var recyclerView: RecyclerView
-
-
+    lateinit var binding:FragmentContentBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        items=loadData()
+        binding=FragmentContentBinding.inflate(layoutInflater)
 
     }//onCreate
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        contentAdapter = ContentAdapter(requireActivity(),items)
-        return inflater.inflate(fragment_content,container,false)
+        loadData()
+        return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        recyclerView= view?.findViewById(R.id.container_recycler)!!
-        recyclerView.adapter = contentAdapter
-        recyclerView.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
-
-    }
-    private fun loadData():MutableList<Item>{
+//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+//        recyclerView= view?.findViewById(R.id.container_recycler)!!
+//        recyclerView.adapter = contentAdapter
+//        recyclerView.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
+//
+//    }
+    private fun loadData(){
         //retrofit
         var retrofit:Retrofit = RetrofitHelper
             .getRetrofitInstance("http://openapi.seoul.go.kr:8088")
@@ -75,23 +76,25 @@ class ContentFragment: Fragment(){
                 var responseAPI: Response? = response.body()
                 if (responseAPI != null) {
                     var itemsAPI:MutableList<Item> = responseAPI.culturalEventInfo.row!!
-                    items= itemsAPI
-                    Toast.makeText(requireContext(), "Error:${itemsAPI.size}", Toast.LENGTH_SHORT).show()
-                    Log.i("ErrorAPI","${responseAPI}")
-                    return
+                    Toast.makeText(requireContext(), "Total:${itemsAPI.size} 개", Toast.LENGTH_SHORT).show()
+                    items=itemsAPI
+                    contentAdapter = ContentAdapter(requireActivity(),items)
+                    binding.containerRecycler.adapter = contentAdapter
+                    recyclerView=view?.findViewById(R.id.container_recycler)!!
+                    recyclerView.adapter=contentAdapter
+                    recyclerView.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
+
                 } else{
                     Toast.makeText(requireContext(), "API불러오기실패", Toast.LENGTH_SHORT).show()
-                    return
+
                 }
             }
             override fun onFailure(call: Call<Response>, t: Throwable) {
                 Toast.makeText(requireContext(), "Error:${t.message}", Toast.LENGTH_SHORT).show()
                 Log.i("ErrorAPI","Error:${t.message}")
-                return
+
             }
-
         })
-        return items
+    }//loadData()
 
-    }
 }

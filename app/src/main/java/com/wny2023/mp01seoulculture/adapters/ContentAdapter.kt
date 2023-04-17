@@ -11,25 +11,20 @@ import com.wny2023.mp01seoulculture.models.Item
 
 class ContentAdapter (var context:Activity, var items:MutableList<Item>): Adapter<ContentAdapter.VH> () {
 
-    inner class VH(var binding:RecyclerContentItemBinding): ViewHolder(binding.root){
-        fun bind(item:Item) {
-            binding.tvEvaddr.text=item.PLACE
-            binding.tvEvdistrict.text=item.GUNAME
-            binding.tvEvduring.text=item.DATE
-            binding.tvEvtitle.text=item.TITLE
-            binding.tvEvprogram.text=item.PROGRAM
-            Glide.with(context).load(item.MAIN_IMG).into(binding.imgEvent)
-        }
-    }
+    inner class VH(var binding:RecyclerContentItemBinding): ViewHolder(binding.root)
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContentAdapter.VH {
         return VH(RecyclerContentItemBinding.inflate(LayoutInflater.from(context),parent,false))
     }
-
+    override fun getItemCount(): Int = items.size
     override fun onBindViewHolder(holder: ContentAdapter.VH, position: Int) {
         var item:Item = items[position]
-        holder.bind(item)
+        holder.binding.tvEvaddr.text=item.PLACE
+        holder.binding.tvEvdistrict.text=item.GUNAME
+        holder.binding.tvEvduring.text=item.DATE
+        holder.binding.tvEvtitle.text=item.TITLE
+        holder.binding.tvEvprogram.text=item.PROGRAM
+        Glide.with(context).load(item.MAIN_IMG).into(holder.binding.imgEvent)
     }
-
-    override fun getItemCount(): Int = items.size
 
 }
