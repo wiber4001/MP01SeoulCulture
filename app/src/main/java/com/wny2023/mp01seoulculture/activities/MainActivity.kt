@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
 //                s
 //            } else s.substring(n)
 //        }
-        var urlGlide:String ="ftp://wny2023@wny2023.dothome.co.kr/html/mpproject${memberIn.imgUrl}"
+        var urlGlide:String ="http://wny2023.dothome.co.kr/mpproject/${memberIn.imgUrl}"
         Glide.with(this).load(urlGlide).into(dnvHeaderBinding.imgProfile)
         //3.아이디
         dnvHeaderBinding.tvId.text=memberIn.id
