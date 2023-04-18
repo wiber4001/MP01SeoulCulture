@@ -6,6 +6,7 @@
     <string name="btn_signup">회원가입</string>
     <string name="btn_unlogin">둘러보기</string>
     <string name="btn_photo">사진선택</string>
+    <string name="btn_favorit">즐겨찾기에 추가하기</string>
     <string name="tv_simplelogin">간편 회원가입/로그인</string>
     <string name="et_id">아이디</string>
     <string name="et_pass1">비밀번호</string>
@@ -15,6 +16,7 @@
     <string name="menu_home">메인</string>
     <string name="menu_favorit">즐겨찾기</string>
     <string name="menu_review">리뷰</string>
+    <string name="menu_map">지도보기</string>
     <string name="item_favorit">좋아한 행사</string>
     <string name="item_review">리뷰 보기</string>
     <string name="logout">로그아웃</string>
@@ -30,5 +32,7 @@
     <string name="item_link">http://www.naver.com</string>
     <string name="item_fav">좋아요</string>
     <string name="item_back">메인으로</string>
+    <string name="item_ok">추가됨</string>
+    <string name="item_cancel">추가안됨</string>
 
 </resources>

@@ -46,30 +46,12 @@ class ContentFragment: Fragment(){
         return binding.root
     }
 
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        recyclerView= view?.findViewById(R.id.container_recycler)!!
-//        recyclerView.adapter = contentAdapter
-//        recyclerView.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
-//
-//    }
     private fun loadData(){
         //retrofit
         var retrofit:Retrofit = RetrofitHelper
             .getRetrofitInstance("http://openapi.seoul.go.kr:8088")
         var retrofitService = retrofit.create(RetrofitService::class.java)
-//        retrofitService.loadServerAll2().enqueue(object :Callback<String>{
-//            override fun onResponse(call: Call<String>, response: retrofit2.Response<String>) {
-//                var s=response.body()
-//                Toast.makeText(requireContext(), "API:${s}", Toast.LENGTH_SHORT).show()
-//                Log.i("API","API:${s}")
-//            }
-//
-//            override fun onFailure(call: Call<String>, t: Throwable) {
-//                Toast.makeText(requireContext(), "Error:${t.message}", Toast.LENGTH_SHORT).show()
-//                Log.i("ErrorAPI","Error:${t.message}")
-//            }
-//
-//        })
+
         var call: Call<Response> = retrofitService.loadServerAll()
         call.enqueue(object : Callback<Response> {
             override fun onResponse(call: Call<Response>, response: retrofit2.Response<Response>) {

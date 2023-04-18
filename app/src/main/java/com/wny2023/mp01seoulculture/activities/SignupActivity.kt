@@ -227,8 +227,7 @@ class SignupActivity : AppCompatActivity() {
                                     var call: Call<String> = retrofitService.sendServer(datapart, filepart)
                                     call.enqueue(object : Callback<String> {
                                         override fun onResponse(call: Call<String>, response: Response<String>) {
-                                            var msg: String = response.body().toString()
-                                            Toast.makeText(this@SignupActivity,"${msg}",Toast.LENGTH_SHORT).show()
+//                                            var msg: String = response.body().toString()
                                             var intent = Intent(this@SignupActivity,LoginActivity::class.java)
                                             intent.putExtra("object", memberNew)
                                             startActivity(intent)

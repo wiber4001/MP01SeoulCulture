@@ -1,20 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".activities.ContentDetailActivity">
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/layout_appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/appbar">
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/container_toolbar"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            app:titleTextAppearance="@font/mclassic"
+            android:textAlignment="gravity"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            android:layout_height="?attr/actionBarSize"/>
+    </com.google.android.material.appbar.AppBarLayout>
+    <ScrollView
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/mp_400">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
             <ImageView
                 android:id="@+id/img_main"
                 android:layout_width="match_parent"
@@ -22,23 +35,6 @@
                 android:background="@color/mp_800"
                 android:src="@drawable/profile03"
                 android:scaleType="fitCenter"/>
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                app:titleTextAppearance="@font/mclassic"
-                android:textAlignment="gravity"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"/>
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-    </com.google.android.material.appbar.AppBarLayout>
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/mp_400">
             <TextView
                 android:id="@+id/tv_title"
                 android:layout_width="match_parent"
@@ -80,7 +76,8 @@
                 android:padding="8dp"
                 android:textColor="@color/mp_800"
                 android:background="@color/mp_600"
-                android:textStyle="normal"/>
+                android:textStyle="normal"
+                android:clickable="true"/>
             <TextView
                 android:id="@+id/tv_program"
                 android:layout_width="match_parent"
@@ -113,19 +110,41 @@
                 android:padding="8dp"
                 android:textColor="@color/mp_800"
                 android:textStyle="normal"/>
-                <Button
-                    android:id="@+id/btn_favorit"
-                    android:text="@string/item_fav"
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/toggle_button_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/btn_toggle"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintBaseline_toBaselineOf="@id/btn_toggle"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/mclassic"
+                    android:textColor="@color/mp_800"
+                    android:text="@string/btn_favorit"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"/>
+                <androidx.appcompat.widget.AppCompatToggleButton
+                    android:id="@+id/btn_toggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textOn="@string/item_ok"
+                    android:textOff="@string/item_cancel"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:drawableRight="@drawable/ic_favorit"
-                    android:drawableTint="@color/color_select_item"
-                    app:itemTextColor="@color/color_select_item"
-                    android:background="@color/mp_600"
-                    app:labelVisibilityMode="selected"
+                    android:textColor="@color/mp_400"
                     android:fontFamily="@font/mclassic"
-                    android:layout_width="wrap_content"
-                    android:layout_height="44dp"/>
+                    android:backgroundTint="@color/color_select_menu"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/toggle_button_label"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+            </LinearLayout>
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </ScrollView>
+</LinearLayout>

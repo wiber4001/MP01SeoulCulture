@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.View.OnClickListener
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.wny2023.mp01seoulculture.G
 import com.wny2023.mp01seoulculture.R
 import com.wny2023.mp01seoulculture.databinding.ActivityLoginBinding
 import com.wny2023.mp01seoulculture.models.Member
@@ -56,6 +57,7 @@ class LoginActivity : AppCompatActivity() {
         builder.setTitle("로그인 정보").setMessage("${member.id}\n로 로그인합니다.\n")
             .setPositiveButton("확인", DialogInterface.OnClickListener { dialog, which ->
                 var intent =Intent(this@LoginActivity,MainActivity::class.java)
+                G.member = memberI
                 intent.putExtra("object",member)
                 startActivity(intent)
             }).setNegativeButton("취소",DialogInterface.OnClickListener { dialog, which ->
@@ -81,6 +83,7 @@ class LoginActivity : AppCompatActivity() {
                     confirmLogin(echo)
                 }else{
                     Toast.makeText(this@LoginActivity, "가입정보가 확인되지 않습니다.", Toast.LENGTH_SHORT).show()
+                    return
                 }
             }
             override fun onFailure(call: Call<Member>, t: Throwable) {

@@ -1,6 +1,5 @@
 package com.wny2023.mp01seoulculture.network
 
-import com.wny2023.mp01seoulculture.models.Item
 import com.wny2023.mp01seoulculture.models.Member
 import com.wny2023.mp01seoulculture.models.Response
 import okhttp3.MultipartBody
@@ -35,6 +34,14 @@ interface RetrofitService {
     @GET("/565842635777696236346c4b424264/json/culturalEventInfo/1/500/")
     fun loadServerAll() : Call<Response>
 
-//    @GET("/565842635777696236346c4b424264/json/culturalEventInfo/1/1/")
-//    fun loadServerAll2() : Call<String>
+    //즐겨찾기 서버에 저장하기
+    @Multipart
+    @POST("mpproject/favoritSendDB.php")
+    fun sendFavServer(@PartMap dataPart: Map<String, String>) :Call<String>
+
+    //즐겨찾기 서버에서 삭제하기
+    @FormUrlEncoded
+    @POST("mpproject/favoritDeleteDB.php")
+    fun deleteFavServer(@Field("id") id:String, @Field("pass") pass:String, @Field("TITLE") TITLE:String?): Call<String?>?
+
 }
