@@ -11,7 +11,7 @@ import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
 import retrofit2.http.PartMap
-import retrofit2.http.Query
+import retrofit2.http.Path
 
 interface RetrofitService {
 
@@ -43,5 +43,14 @@ interface RetrofitService {
     @FormUrlEncoded
     @POST("mpproject/favoritDeleteDB.php")
     fun deleteFavServer(@Field("id") id:String, @Field("pass") pass:String, @Field("TITLE") TITLE:String?): Call<String?>?
+
+    //즐겨찾기 불러오기
+    @FormUrlEncoded
+    @POST("mpproject/favoritLoadDB.php")
+    fun loadFavServer(@Field("id") id:String, @Field("pass") pass:String): Call<String>?
+
+    //즐겨찾기한 행사정보 json으로 불러오기
+    @GET("/565842635777696236346c4b424264/json/culturalEventInfo/1/500/ /{TITLE}")
+    fun loadServerFav(@Path("TITLE") TITLE: String?) : Call<Response>
 
 }

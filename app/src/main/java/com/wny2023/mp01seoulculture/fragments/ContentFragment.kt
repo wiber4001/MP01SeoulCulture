@@ -68,7 +68,6 @@ class ContentFragment: Fragment(){
 
                 } else{
                     Toast.makeText(requireContext(), "API불러오기실패", Toast.LENGTH_SHORT).show()
-
                 }
             }
             override fun onFailure(call: Call<Response>, t: Throwable) {

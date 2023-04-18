@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.OnClickListener
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
@@ -30,7 +29,7 @@ class ContentAdapter (var context:Activity, var items:MutableList<Item>): Adapte
         holder.binding.tvEvprogram.text=item.PROGRAM
         Glide.with(context).load(item.MAIN_IMG).into(holder.binding.imgEvent)
 
-        holder.binding.root.setOnClickListener(View.OnClickListener {
+        holder.binding.root.setOnClickListener({
             val intent=Intent(context,ContentDetailActivity::class.java)
             intent.putExtra("object",item)
             intent.run { context.startActivity(intent) }
