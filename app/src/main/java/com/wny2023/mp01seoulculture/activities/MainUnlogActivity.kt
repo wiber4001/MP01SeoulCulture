@@ -42,11 +42,11 @@ class MainUnlogActivity : AppCompatActivity() {
         binding.menuDnv.setNavigationItemSelectedListener { item->
             when(item.itemId){
                 R.id.item_favorit -> {
-                    Toast.makeText(this, "(구현예정)내 즐겨찾기를 엽니다.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "회원전용 서비스입니다.", Toast.LENGTH_SHORT).show()
                     clickFavorit()
                 }
                 R.id.item_review -> {
-                    Toast.makeText(this, "(구현예정)내 리뷰를 엽니다.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "(구현예정) 리뷰를 엽니다.", Toast.LENGTH_SHORT).show()
                     clickReview()
                 }
                 R.id.item_edit -> {
