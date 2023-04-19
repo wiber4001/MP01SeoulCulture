@@ -129,17 +129,18 @@
                     android:text="@string/btn_favorit"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"/>
-                <androidx.appcompat.widget.AppCompatToggleButton
+                <ToggleButton
                     android:id="@+id/btn_toggle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textOn="@string/item_ok"
-                    android:textOff="@string/item_cancel"
                     android:textSize="16sp"
                     android:textStyle="bold"
+                    android:textOn="@string/item_ok"
+                    android:textOff="@string/item_cancel"
                     android:textColor="@color/mp_400"
-                    android:fontFamily="@font/mclassic"
                     android:backgroundTint="@color/color_select_menu"
+                    android:fontFamily="@font/mclassic"
+                    android:text="@string/item_ok"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/toggle_button_label"
                     app:layout_constraintTop_toTopOf="parent"

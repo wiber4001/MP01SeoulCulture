@@ -5,15 +5,17 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
+
 import android.widget.Toast
+
 import com.bumptech.glide.Glide
 import com.wny2023.mp01seoulculture.G
 import com.wny2023.mp01seoulculture.GItem
 import com.wny2023.mp01seoulculture.R
+
 import com.wny2023.mp01seoulculture.databinding.ActivityContentDetailBinding
 import com.wny2023.mp01seoulculture.models.Item
-import com.wny2023.mp01seoulculture.models.Member
+
 import com.wny2023.mp01seoulculture.network.RetrofitHelper
 import com.wny2023.mp01seoulculture.network.RetrofitService
 import retrofit2.Call
@@ -24,13 +26,21 @@ import retrofit2.Retrofit
 class ContentDetailActivity : AppCompatActivity() {
 
     val binding:ActivityContentDetailBinding by lazy { ActivityContentDetailBinding.inflate(layoutInflater) }
-
+    var favChk: Boolean? = false
     lateinit var itemClick:Item
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         itemClick=intent?.getSerializableExtra("object") as Item
+        favChk =intent?.getStringExtra("favoritChk").toBoolean()
+//        Toast.makeText(this, "${favChk}", Toast.LENGTH_SHORT).show()
+        Log.i("intentMP01","${intent?.getStringExtra("favoritChk")}")
+
+        if(favChk as Boolean) binding.btnToggle.isChecked = true
+        else binding.btnToggle.isChecked =false
+
         GItem.g_item=itemClick
 
         setSupportActionBar(binding.toolbar)
@@ -49,15 +59,20 @@ class ContentDetailActivity : AppCompatActivity() {
         binding.tvProgram.text=itemClick.PROGRAM
         binding.tvTitle.text=itemClick.TITLE
 
-        binding.btnToggle.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
+
+
+    }//onCreate()
+
+    override fun onResume() {
+        super.onResume()
+        binding.btnToggle.setOnCheckedChangeListener { buttonView, isChecked ->
+            if(isChecked){
                 clickFavorit()
-            } else {
+            }else{
                 unclickFavorit()
             }
         }
-
-    }//onCreate()
+    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_option,menu)

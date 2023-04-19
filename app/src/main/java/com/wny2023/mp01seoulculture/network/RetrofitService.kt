@@ -45,10 +45,15 @@ interface RetrofitService {
     @POST("mpproject/favoritDeleteDB.php")
     fun deleteFavServer(@Field("id") id:String, @Field("pass") pass:String, @Field("TITLE") TITLE:String?): Call<String?>?
 
-    //즐겨찾기 불러오기
+    //즐겨찾기 전체 불러오기
     @FormUrlEncoded
     @POST("mpproject/favoritLoadDB.php")
     fun loadFavServer(@Field("id") id:String, @Field("pass") pass:String): Call<ArrayList<Item>>?
+
+    //즐겨찾기 누른것 확인하기
+    @FormUrlEncoded
+    @POST("mpproject/favoritCheckDB.php")
+    fun favoritConfirm(@Field("id") id:String, @Field("pass") pass:String, @Field("TITLE") TITLE:String): Call<Item>?
 
 //    //즐겨찾기한 행사정보 json으로 불러오기
 //    @GET("/565842635777696236346c4b424264/json/culturalEventInfo/1/500/ /{TITLE}")
