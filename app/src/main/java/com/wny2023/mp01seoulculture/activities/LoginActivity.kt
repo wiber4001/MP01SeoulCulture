@@ -48,6 +48,12 @@ class LoginActivity : AppCompatActivity() {
             memberI.pass=binding.etPass.text.toString()
             loginVerify(memberI) }
 
+        //회원 탈퇴 버튼 클릭시
+        binding.btnDelete.setOnClickListener {
+            memberI.id=binding.etId.text.toString()
+            memberI.pass=binding.etPass.text.toString()
+            leavingAccount(memberI) }
+
     }//onCreate()
 
 
@@ -92,5 +98,36 @@ class LoginActivity : AppCompatActivity() {
 
         })
 
+    }
+
+    //회원탈퇴
+    private fun leavingAccount(member: Member){
+        val builder =AlertDialog.Builder(this)
+        builder.setTitle("회원탈퇴").setMessage("${member.id}님\n가입정보를 삭제하고\n탈퇴합니다.\n")
+            .setPositiveButton("탈퇴", DialogInterface.OnClickListener { dialog, which ->
+                G.member = memberI
+                val retrofit:Retrofit = RetrofitHelper.getRetrofitInstance("http://wny2023.dothome.co.kr")
+                var retrofitService:RetrofitService = retrofit.create(RetrofitService::class.java)
+                var call:Call<String?>? = retrofitService.deleteAcoountServer(member.id,member.pass)
+                call?.enqueue(object : Callback<String?> {
+                    override fun onResponse(call: Call<String?>, response: Response<String?>) {
+                        response?.body().also {
+                            Toast.makeText(this@LoginActivity, "${response.body()}", Toast.LENGTH_SHORT).show()
+                            Log.i("deletemp01","${response.body()}")
+                        }
+                        Toast.makeText(this@LoginActivity, "${response.body()}", Toast.LENGTH_SHORT).show()
+                        Log.i("deletemp01","${response.body()}")
+                    }
+
+                    override fun onFailure(call: Call<String?>, t: Throwable) {
+                        Toast.makeText(this@LoginActivity, "error:${t.message}", Toast.LENGTH_SHORT).show()
+                        Log.i("deletemp01","${t.message}")
+                    }
+                })
+
+            }).setNegativeButton("취소",DialogInterface.OnClickListener { dialog, which ->
+                Toast.makeText(this@LoginActivity, "취소하셨습니다.", Toast.LENGTH_SHORT).show()
+            }).setCancelable(false).create()
+        builder.show()
     }
 }

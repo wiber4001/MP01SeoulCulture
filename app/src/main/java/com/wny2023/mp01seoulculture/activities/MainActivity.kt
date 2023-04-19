@@ -62,15 +62,15 @@ class MainActivity : AppCompatActivity() {
         binding.menuDnv.setNavigationItemSelectedListener { item->
             when(item.itemId){
                 R.id.item_favorit -> {
-                    Toast.makeText(this, "내 즐겨찾기를 엽니다.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "(구현예정)내 즐겨찾기를 엽니다.", Toast.LENGTH_SHORT).show()
                     clickFavorit()
                 }
                 R.id.item_review -> {
-                    Toast.makeText(this, "내 리뷰를 엽니다.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "(구현예정)내 리뷰를 엽니다.", Toast.LENGTH_SHORT).show()
                     clickReview()
                 }
                 R.id.item_edit -> {
-                    Toast.makeText(this, "내 프로필 사진을 변경", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "(구현예정)내 프로필 사진을 변경", Toast.LENGTH_SHORT).show()
                     clickPhotoEdit()
                 }
                 R.id.item_logout -> {
@@ -103,6 +103,8 @@ class MainActivity : AppCompatActivity() {
 
     }//onCreate()
 
+
+    //구현예정
     private fun clickFavorit(){
 
     }

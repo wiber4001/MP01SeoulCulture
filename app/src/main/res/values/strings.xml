@@ -7,6 +7,7 @@
     <string name="btn_unlogin">둘러보기</string>
     <string name="btn_photo">사진선택</string>
     <string name="btn_favorit">즐겨찾기에 추가하기</string>
+    <string name="btn_delete">회원탈퇴</string>
     <string name="tv_simplelogin">간편 회원가입/로그인</string>
     <string name="et_id">아이디</string>
     <string name="et_pass1">비밀번호</string>

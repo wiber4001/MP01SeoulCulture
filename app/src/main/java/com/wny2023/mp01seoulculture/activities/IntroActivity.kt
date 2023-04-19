@@ -37,18 +37,22 @@ class IntroActivity : AppCompatActivity() {
         binding.imgGoogle.setOnClickListener{googleLogin()}
         binding.imgNaver.setOnClickListener{naverLogin()}
 
+
+
     }//onCreate()
 
     private fun kakaoLogin(){
-
+        Toast.makeText(this, "기능추가예정", Toast.LENGTH_SHORT).show()
     }
 
     private fun googleLogin(){
-
+        Toast.makeText(this, "기능추가예정", Toast.LENGTH_SHORT).show()
     }
 
     private fun naverLogin(){
-
+        Toast.makeText(this, "기능추가예정", Toast.LENGTH_SHORT).show()
     }
+
+
 
 }

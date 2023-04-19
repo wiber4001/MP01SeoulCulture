@@ -55,8 +55,9 @@ interface RetrofitService {
     @POST("mpproject/favoritCheckDB.php")
     fun favoritConfirm(@Field("id") id:String, @Field("pass") pass:String, @Field("TITLE") TITLE:String): Call<Item>?
 
-//    //즐겨찾기한 행사정보 json으로 불러오기
-//    @GET("/565842635777696236346c4b424264/json/culturalEventInfo/1/500/ /{TITLE}")
-//    fun loadServerFav(@Path("TITLE") TITLE: String?) : Call<Response>
+    //회원탈퇴하기-회원정보삭제
+    @FormUrlEncoded
+    @POST("mpproject/deleteMembers.php")
+    fun deleteAcoountServer(@Field("id") id:String, @Field("pass") pass:String): Call<String?>?
 
 }
