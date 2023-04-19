@@ -4,13 +4,14 @@
     android:layout_height="match_parent"
     android:background="@color/mp_600"
     android:gravity="center">
+
     <TextView
-        android:id="@+id/tv_review"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/mp_800"
+        android:id="@+id/tv_unlog"
+        android:text="@string/tv_unlog"
         android:fontFamily="@font/mclassic"
+        android:textColor="@color/mp_800"
         android:textSize="24sp"
-        android:text="@string/item_review"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </RelativeLayout>
