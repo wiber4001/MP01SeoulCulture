@@ -1,5 +1,6 @@
 package com.wny2023.mp01seoulculture.network
 
+import com.wny2023.mp01seoulculture.models.Item
 import com.wny2023.mp01seoulculture.models.Member
 import com.wny2023.mp01seoulculture.models.Response
 import okhttp3.MultipartBody
@@ -47,10 +48,10 @@ interface RetrofitService {
     //즐겨찾기 불러오기
     @FormUrlEncoded
     @POST("mpproject/favoritLoadDB.php")
-    fun loadFavServer(@Field("id") id:String, @Field("pass") pass:String): Call<String>?
+    fun loadFavServer(@Field("id") id:String, @Field("pass") pass:String): Call<ArrayList<Item>>?
 
-    //즐겨찾기한 행사정보 json으로 불러오기
-    @GET("/565842635777696236346c4b424264/json/culturalEventInfo/1/500/ /{TITLE}")
-    fun loadServerFav(@Path("TITLE") TITLE: String?) : Call<Response>
+//    //즐겨찾기한 행사정보 json으로 불러오기
+//    @GET("/565842635777696236346c4b424264/json/culturalEventInfo/1/500/ /{TITLE}")
+//    fun loadServerFav(@Path("TITLE") TITLE: String?) : Call<Response>
 
 }

@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.wny2023.mp01seoulculture.G
+import com.wny2023.mp01seoulculture.GItem
 import com.wny2023.mp01seoulculture.R
 import com.wny2023.mp01seoulculture.databinding.ActivityContentDetailBinding
 import com.wny2023.mp01seoulculture.models.Item
@@ -30,6 +31,7 @@ class ContentDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         itemClick=intent?.getSerializableExtra("object") as Item
+        GItem.g_item=itemClick
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setHomeButtonEnabled(true)
@@ -83,7 +85,17 @@ class ContentDetailActivity : AppCompatActivity() {
             datapart.put("id", it.id)
             datapart.put("pass",it.pass)
         }
-        datapart.put("TITLE",itemClick.TITLE)
+        GItem.g_item?.let {
+            datapart.put("TITLE",it.TITLE)
+            datapart.put("GUNAME",it.GUNAME)
+            datapart.put("PLACE",it.PLACE)
+            datapart.put("DATE",it.DATE)
+            datapart.put("USE_FEE",it.USE_FEE)
+            datapart.put("PROGRAM",it.PROGRAM)
+            datapart.put("ORG_LINK",it.ORG_LINK)
+            datapart.put("MAIN_IMG",it.MAIN_IMG)
+        }
+
         var call: Call<String> = retrofitService.sendFavServer(datapart)
         call.enqueue(object : Callback<String>{
             override fun onResponse(call: Call<String>, response: Response<String>) {
