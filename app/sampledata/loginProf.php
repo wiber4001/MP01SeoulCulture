@@ -3,6 +3,8 @@
 
     $id=$_POST['id'];
     $pass=$_POST['pass'];
+    
+    $pass=addslashes($pass);
 
     $db=mysqli_connect('localhost','wny2023','thdek543!','wny2023');
     mysqli_query($db,"set names utf8");

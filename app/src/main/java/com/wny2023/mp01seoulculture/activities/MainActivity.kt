@@ -62,15 +62,15 @@ class MainActivity : AppCompatActivity() {
         binding.menuDnv.setNavigationItemSelectedListener { item->
             when(item.itemId){
                 R.id.item_favorit -> {
-                    Toast.makeText(this, "내 즐겨찾기를 엽니다.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "(구현예정)내 즐겨찾기를 엽니다.", Toast.LENGTH_SHORT).show()
                     clickFavorit()
                 }
                 R.id.item_review -> {
-                    Toast.makeText(this, "내 리뷰를 엽니다.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "(구현예정)내 리뷰를 엽니다.", Toast.LENGTH_SHORT).show()
                     clickReview()
                 }
                 R.id.item_edit -> {
-                    Toast.makeText(this, "내 프로필 사진을 변경", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "(구현예정)내 프로필 사진을 변경", Toast.LENGTH_SHORT).show()
                     clickPhotoEdit()
                 }
                 R.id.item_logout -> {
@@ -92,18 +92,19 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().add(R.id.container_fragments,fragements[0]).commit()
         //bottom navigation에 연결하기
         bnv=binding.menuBnv
-        bnv.setOnClickListener{item->
-            when(item.id){
-                R.id.bnv_main -> supportFragmentManager.beginTransaction().replace(R.id.bnv_main,fragements[0]).commit()
-                R.id.bnv_favorit -> supportFragmentManager.beginTransaction().replace(R.id.bnv_favorit,fragements[1]).commit()
-                R.id.bnv_review -> supportFragmentManager.beginTransaction().replace(R.id.bnv_review,fragements[2]).commit()
+        bnv.setOnItemSelectedListener{item->
+            when(item.itemId){
+                R.id.bnv_main -> supportFragmentManager.beginTransaction().replace(R.id.container_fragments,fragements[0]).commit()
+                R.id.bnv_favorit -> supportFragmentManager.beginTransaction().replace(R.id.container_fragments,fragements[1]).commit()
+                R.id.bnv_review -> supportFragmentManager.beginTransaction().replace(R.id.container_fragments,fragements[2]).commit()
             }
             true
         }
 
-
     }//onCreate()
 
+
+    //구현예정
     private fun clickFavorit(){
 
     }

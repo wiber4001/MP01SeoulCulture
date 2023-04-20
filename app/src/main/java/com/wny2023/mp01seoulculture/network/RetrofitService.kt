@@ -12,7 +12,7 @@ import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
 import retrofit2.http.PartMap
-import retrofit2.http.Query
+import retrofit2.http.Path
 
 interface RetrofitService {
 
@@ -35,6 +35,29 @@ interface RetrofitService {
     @GET("/565842635777696236346c4b424264/json/culturalEventInfo/1/500/")
     fun loadServerAll() : Call<Response>
 
-//    @GET("/565842635777696236346c4b424264/json/culturalEventInfo/1/1/")
-//    fun loadServerAll2() : Call<String>
+    //즐겨찾기 서버에 저장하기
+    @Multipart
+    @POST("mpproject/favoritSendDB.php")
+    fun sendFavServer(@PartMap dataPart: Map<String, String>) :Call<String>
+
+    //즐겨찾기 서버에서 삭제하기
+    @FormUrlEncoded
+    @POST("mpproject/favoritDeleteDB.php")
+    fun deleteFavServer(@Field("id") id:String, @Field("pass") pass:String, @Field("TITLE") TITLE:String?): Call<String?>?
+
+    //즐겨찾기 전체 불러오기
+    @FormUrlEncoded
+    @POST("mpproject/favoritLoadDB.php")
+    fun loadFavServer(@Field("id") id:String, @Field("pass") pass:String): Call<ArrayList<Item>>?
+
+    //즐겨찾기 누른것 확인하기
+    @FormUrlEncoded
+    @POST("mpproject/favoritCheckDB.php")
+    fun favoritConfirm(@Field("id") id:String, @Field("pass") pass:String, @Field("TITLE") TITLE:String): Call<Item>?
+
+    //회원탈퇴하기-회원정보삭제
+    @FormUrlEncoded
+    @POST("mpproject/deleteMembers.php")
+    fun deleteAcoountServer(@Field("id") id:String, @Field("pass") pass:String): Call<String?>?
+
 }

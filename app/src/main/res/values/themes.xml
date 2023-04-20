@@ -30,4 +30,10 @@
         <item name="fontFamily">@font/mclassic</item>
         <item name="background">@color/mp_600</item>
     </style>
+    <style name="appbar">
+        <item name="titleTextColor">@color/mp_400</item>
+        <item name="android:textColorPrimary">@color/mp_400</item>
+        <item name="colorControlNormal">@color/mp_800</item>
+        <item name="android:textColor">@color/mp_400</item>
+    </style>
 </resources>

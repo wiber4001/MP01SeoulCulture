@@ -5,17 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.wny2023.mp01seoulculture.R
-import com.wny2023.mp01seoulculture.databinding.FragmentReviewBinding
+import com.wny2023.mp01seoulculture.databinding.FragmentFavoritUnlogBinding
 
-class ReviewFragment:Fragment() {
-
-    lateinit var binding:FragmentReviewBinding
-
+class FavoritUnlogFragment:Fragment() {
+    lateinit var binding: FragmentFavoritUnlogBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding=FragmentReviewBinding.inflate(layoutInflater)
-    }
+        binding= FragmentFavoritUnlogBinding.inflate(layoutInflater)
+    }//onCreate
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -23,5 +21,4 @@ class ReviewFragment:Fragment() {
     ): View? {
         return binding.root
     }
-
 }

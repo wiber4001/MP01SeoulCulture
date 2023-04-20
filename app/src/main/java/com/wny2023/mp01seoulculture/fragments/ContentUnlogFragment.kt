@@ -1,6 +1,5 @@
 package com.wny2023.mp01seoulculture.fragments
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,9 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wny2023.mp01seoulculture.R
-import com.wny2023.mp01seoulculture.R.*
-import com.wny2023.mp01seoulculture.R.layout.*
-import com.wny2023.mp01seoulculture.adapters.ContentAdapter
+import com.wny2023.mp01seoulculture.adapters.ContentUnlogAdapter
 import com.wny2023.mp01seoulculture.databinding.FragmentContentBinding
 import com.wny2023.mp01seoulculture.models.Item
 import com.wny2023.mp01seoulculture.models.Response
@@ -22,12 +19,11 @@ import com.wny2023.mp01seoulculture.network.RetrofitService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Retrofit
-import retrofit2.create
 
-class ContentFragment: Fragment(){
+class ContentUnlogFragment: Fragment(){
 
     var items:MutableList<Item> = mutableListOf()
-    lateinit var contentAdapter: ContentAdapter
+    lateinit var contentAdapter: ContentUnlogAdapter
     lateinit var recyclerView: RecyclerView
     lateinit var binding:FragmentContentBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,7 +56,7 @@ class ContentFragment: Fragment(){
                     var itemsAPI:MutableList<Item> = responseAPI.culturalEventInfo.row!!
                     Toast.makeText(requireContext(), "Total:${itemsAPI.size} 개", Toast.LENGTH_SHORT).show()
                     items=itemsAPI
-                    contentAdapter = ContentAdapter(requireActivity(),items)
+                    contentAdapter = ContentUnlogAdapter(requireActivity(),items)
                     binding.containerRecycler.adapter = contentAdapter
                     recyclerView=view?.findViewById(R.id.container_recycler)!!
                     recyclerView.adapter=contentAdapter
