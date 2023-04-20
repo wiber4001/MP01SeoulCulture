@@ -54,7 +54,7 @@ class MainUnlogActivity : AppCompatActivity() {
                 }
                 R.id.item_logout -> {
                     var builder = AlertDialog.Builder(this)
-                    builder.setMessage("로그아웃하시겠습니까?\n확인:첫화면으로")
+                    builder.setMessage("(회원전용)로그아웃?\n확인:첫화면으로")
                         .setPositiveButton("확인",
                             DialogInterface.OnClickListener { dialogInterface, i ->
                             startActivity(Intent(this,IntroActivity::class.java))

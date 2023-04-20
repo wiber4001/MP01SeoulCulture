@@ -88,7 +88,13 @@ class SignupActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             }
             override fun afterTextChanged(s: Editable?) {
-                checkEmail()
+                var p = checkEmail()
+                if (p) {
+                    binding.etEmail.setTextColor(R.color.mp_800.toInt())
+                    memberNew.email = binding.etEmail.text.toString()
+                }else {
+                    binding.etEmail.setTextColor(R.color.mp_red.toInt())
+                }
             }
         })
         //4.비밀번호입력
@@ -137,21 +143,15 @@ class SignupActivity : AppCompatActivity() {
 
     }//onCreate()
 
-    //이메일 검증용 변수
-    val emailValidation = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
+
+
     fun checkEmail():Boolean{
+        //이메일 검증용 변수
+        val emailValidation = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
         var email = binding.etEmail.text.toString().trim() //공백제거
         val p= Pattern.matches(emailValidation, email)
-        if (p) {
-            //이메일 형태가 정상일 경우
-            binding.etEmail.setTextColor(R.color.mp_800.toInt())
-            memberNew.email = binding.etEmail.text.toString()
-            return true
-        } else {
-            //이메일 형태가 비정형일경우
-            binding.etEmail.setTextColor(R.color.mp_red.toInt())
-            return false
-        }
+        if (p) return true
+        else return false
     }
 
     //비밀번호 확인
@@ -175,12 +175,9 @@ class SignupActivity : AppCompatActivity() {
         memberNew.id = binding.etId.text?.toString() ?:""
         memberNew.path= "InApp"
         infoConfirm()
-
-
     }
 
     //정보 입력 확인
-
     private fun infoConfirm() {
         if (memberNew.id.length == 0) {
             Toast.makeText(this, "아이디는 필수입니다.", Toast.LENGTH_SHORT).show()
@@ -227,7 +224,6 @@ class SignupActivity : AppCompatActivity() {
                                     var call: Call<String> = retrofitService.sendServer(datapart, filepart)
                                     call.enqueue(object : Callback<String> {
                                         override fun onResponse(call: Call<String>, response: Response<String>) {
-//                                            var msg: String = response.body().toString()
                                             var intent = Intent(this@SignupActivity,LoginActivity::class.java)
                                             intent.putExtra("object", memberNew)
                                             startActivity(intent)
