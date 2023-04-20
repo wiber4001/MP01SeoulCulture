@@ -83,13 +83,13 @@ class ContentDetailActivity : AppCompatActivity() {
         when(item.itemId){
             android.R.id.home -> finish()
             R.id.menu_map -> mapSearch()
-            R.id.menu_favorit -> clickFavorit()
+            R.id.menu_favorit -> Toast.makeText(this, "(구현예정)리뷰작성기능", Toast.LENGTH_SHORT).show()
         }
         return super.onOptionsItemSelected(item)
     }
 
     private fun mapSearch(){
-
+        Toast.makeText(this, "(구현예정) 주소로 장소검색", Toast.LENGTH_SHORT).show()
     }
 
     private fun clickFavorit(){
