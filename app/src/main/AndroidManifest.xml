@@ -19,6 +19,9 @@
             android:name=".activities.ContentDetailActivity"
             android:exported="false" />
         <activity
+            android:name=".activities.ContentDetailUnlogActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.MainUnlogActivity"
             android:exported="false" />
         <activity
@@ -44,5 +47,4 @@
             android:name=".activities.MainActivity"
             android:exported="false" />
     </application>
-
 </manifest>

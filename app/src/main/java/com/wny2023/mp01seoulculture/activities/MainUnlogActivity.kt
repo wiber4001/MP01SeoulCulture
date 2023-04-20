@@ -10,17 +10,16 @@ import androidx.appcompat.app.AlertDialog
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.wny2023.mp01seoulculture.R
 import com.wny2023.mp01seoulculture.databinding.ActivityMainUnlogBinding
-import com.wny2023.mp01seoulculture.databinding.HeaderDnvBinding
 import com.wny2023.mp01seoulculture.fragments.ContentFragment
-import com.wny2023.mp01seoulculture.fragments.FavoritFragment
+import com.wny2023.mp01seoulculture.fragments.ContentUnlogFragment
 import com.wny2023.mp01seoulculture.fragments.ReviewFragment
-import com.wny2023.mp01seoulculture.fragments.UnlogFragment
+import com.wny2023.mp01seoulculture.fragments.FavoritUnlogFragment
 
 class MainUnlogActivity : AppCompatActivity() {
 
     val binding:ActivityMainUnlogBinding by lazy { ActivityMainUnlogBinding.inflate(layoutInflater) }
 
-    var fragements = mutableListOf(ContentFragment(), UnlogFragment(), ReviewFragment())
+    var fragements = mutableListOf(ContentUnlogFragment(), FavoritUnlogFragment(), ReviewFragment())
 
     lateinit var bnv: BottomNavigationView
 
@@ -50,7 +49,7 @@ class MainUnlogActivity : AppCompatActivity() {
                     clickReview()
                 }
                 R.id.item_edit -> {
-                    Toast.makeText(this, "(구현예정)내 프로필 사진을 변경", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "회원전용 서비스입니다.", Toast.LENGTH_SHORT).show()
                     clickPhotoEdit()
                 }
                 R.id.item_logout -> {
