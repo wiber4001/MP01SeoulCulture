@@ -9,19 +9,10 @@ import android.view.MenuItem
 import android.widget.Toast
 
 import com.bumptech.glide.Glide
-import com.wny2023.mp01seoulculture.G
-import com.wny2023.mp01seoulculture.GItem
 import com.wny2023.mp01seoulculture.R
 
 import com.wny2023.mp01seoulculture.databinding.ActivityContentDetailBinding
 import com.wny2023.mp01seoulculture.models.Item
-
-import com.wny2023.mp01seoulculture.network.RetrofitHelper
-import com.wny2023.mp01seoulculture.network.RetrofitService
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
 
 class ContentDetailUnlogActivity : AppCompatActivity() {
 

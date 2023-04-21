@@ -36,5 +36,10 @@
     <string name="item_back">메인으로</string>
     <string name="item_ok">추가됨</string>
     <string name="item_cancel">추가안됨</string>
+    <string name="review_title">블로그제목</string>
+    <string name="review_postdate">포스팅날짜</string>
+    <string name="review_description">포스팅요약</string>
+    <string name="review_bloggername">블로거이름</string>
+    <string name="review_link">블로그링크</string>
 
 </resources>

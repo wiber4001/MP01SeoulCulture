@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    android:background="@color/mp_400"
+    android:layout_margin="4dp"
+    android:layout_gravity="center">
+    <LinearLayout
+        android:id="@+id/container_item"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/review_title"
+            android:text="@string/review_title"
+            android:textColor="@color/mp_800"
+            android:textSize="20sp"
+            android:fontFamily="@font/mclassic"
+            android:textStyle="bold"
+            android:background="@color/mp_400"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/review_postdate"
+            android:text="@string/review_postdate"
+            android:textColor="@color/mp_800"
+            android:textSize="16sp"
+            android:fontFamily="@font/mclassic"
+            android:textStyle="normal"
+            android:background="@color/mp_600"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/review_description"
+            android:text="@string/review_description"
+            android:textColor="@color/mp_800"
+            android:textSize="12sp"
+            android:lines="5"
+            android:fontFamily="@font/mclassic"
+            android:textStyle="normal"
+            android:background="@color/mp_400"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/review_bloogername"
+            android:text="@string/review_bloggername"
+            android:textColor="@color/mp_800"
+            android:textSize="16sp"
+            android:fontFamily="@font/mclassic"
+            android:textStyle="normal"
+            android:background="@color/mp_600"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

@@ -10,7 +10,6 @@ import androidx.appcompat.app.AlertDialog
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.wny2023.mp01seoulculture.R
 import com.wny2023.mp01seoulculture.databinding.ActivityMainUnlogBinding
-import com.wny2023.mp01seoulculture.fragments.ContentFragment
 import com.wny2023.mp01seoulculture.fragments.ContentUnlogFragment
 import com.wny2023.mp01seoulculture.fragments.ReviewFragment
 import com.wny2023.mp01seoulculture.fragments.FavoritUnlogFragment

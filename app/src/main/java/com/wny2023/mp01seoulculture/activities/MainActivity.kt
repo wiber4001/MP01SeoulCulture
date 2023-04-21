@@ -7,8 +7,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.wny2023.mp01seoulculture.R
@@ -17,6 +15,7 @@ import com.wny2023.mp01seoulculture.databinding.HeaderDnvBinding
 import com.wny2023.mp01seoulculture.fragments.ContentFragment
 import com.wny2023.mp01seoulculture.fragments.FavoritFragment
 import com.wny2023.mp01seoulculture.fragments.ReviewFragment
+import com.wny2023.mp01seoulculture.models.KakaoSearchPlaceResponse
 import com.wny2023.mp01seoulculture.models.Member
 
 class MainActivity : AppCompatActivity() {
@@ -30,6 +29,11 @@ class MainActivity : AppCompatActivity() {
     var fragements = mutableListOf(ContentFragment(),FavoritFragment(),ReviewFragment())
 
     lateinit var bnv:BottomNavigationView
+
+//    //앱의 초기검색어 - 장소찾기
+//    var searchQuery:String="강동구청"
+//    // 카카오 장소 키워드 검색결과 응답객체 참조변수
+//    var searchPlaceResponse: KakaoSearchPlaceResponse?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +62,7 @@ class MainActivity : AppCompatActivity() {
         //3.아이디
         dnvHeaderBinding.tvId.text=memberIn.id
 
+
         //drawerNavigation메뉴 버튼 설정
         binding.menuDnv.setNavigationItemSelectedListener { item->
             when(item.itemId){
@@ -66,7 +71,7 @@ class MainActivity : AppCompatActivity() {
                     clickFavorit()
                 }
                 R.id.item_review -> {
-                    Toast.makeText(this, "(구현예정)내 리뷰를 엽니다.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "네이버 블로그 검색 하기", Toast.LENGTH_SHORT).show()
                     clickReview()
                 }
                 R.id.item_edit -> {
@@ -101,8 +106,12 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-    }//onCreate()
+//        binding.etSearch.setOnEditorActionListener { v, actionId, event ->
+//
+//        }
 
+
+    }//onCreate()
 
     //구현예정
     private fun clickFavorit(){
