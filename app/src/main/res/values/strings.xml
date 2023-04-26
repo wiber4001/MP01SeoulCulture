@@ -18,6 +18,7 @@
     <string name="menu_home">메인</string>
     <string name="menu_favorit">즐겨찾기</string>
     <string name="menu_review">리뷰</string>
+    <string name="menu_reviewedit">리뷰작성하기</string>
     <string name="menu_map">지도보기</string>
     <string name="item_favorit">좋아한 행사</string>
     <string name="item_review">리뷰 보기</string>
@@ -41,5 +42,11 @@
     <string name="review_description">포스팅요약</string>
     <string name="review_bloggername">블로거이름</string>
     <string name="review_link">블로그링크</string>
+    <string name="review_place">장소평가</string>
+    <string name="review_instrument">시설평가</string>
+    <string name="review_content">내용평가</string>
+    <string name="review_save">저장 및 게시하기</string>
+    <string name="review_short">간단리뷰작성</string>
+
 
 </resources>

@@ -24,54 +24,58 @@
                     android:id="@+id/img1"
                     android:src="@drawable/profile01"
                     android:scaleType="fitCenter"
-                    android:layout_margin="4dp"
+                    android:layout_marginRight="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"/>
                 <ImageView
                     android:id="@+id/img2"
                     android:src="@drawable/profile02"
                     android:scaleType="fitCenter"
-                    android:layout_margin="4dp"
+                    android:layout_marginRight="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"/>
                 <ImageView
                     android:id="@+id/img3"
                     android:src="@drawable/profile01"
                     android:scaleType="fitCenter"
-                    android:layout_margin="4dp"
+                    android:layout_marginRight="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"/>
                 <ImageView
                     android:id="@+id/img4"
                     android:src="@drawable/profile02"
                     android:scaleType="fitCenter"
-                    android:layout_margin="4dp"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"/>
             </LinearLayout>
         </HorizontalScrollView>
+        <Button
+            android:id="@+id/btn_photoselect"
+            android:text="@string/btn_photo"
+            android:textSize="16sp"
+            android:fontFamily="@font/mclassic"
+            android:backgroundTint="@color/mp_800"
+            android:textColor="@color/mp_400"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/tv_title"
             android:text="@string/item_title"
             android:textSize="24sp"
             android:background="@color/mp_600"
-            android:fontFamily="@font/mclassic"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/tv_review"
-            android:text="@string/menu_review"
-            android:textSize="16sp"
-            android:background="@color/mp_400"
+            android:padding="4dp"
             android:fontFamily="@font/mclassic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <com.google.android.material.textfield.TextInputLayout
+            android:background="@color/mp_400"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/menu_review">
+            android:hint="@string/menu_reviewedit"
+            app:counterMaxLength="140"
+            app:counterEnabled="true">
             <com.google.android.material.textfield.TextInputEditText
-                android:background="@color/mp_600"
+                android:background="@color/mp_400"
                 android:textSize="16sp"
                 android:fontFamily="@font/mclassic"
                 android:lines="5"
@@ -83,5 +87,58 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:background="@color/mp_600"
+            android:textColorHint="@color/mp_800"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:hint="@string/review_place">
+            <AutoCompleteTextView
+                android:fontFamily="@font/mclassic"
+                android:id="@+id/dropdown_place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:dropDownHeight="100dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:background="@color/mp_600"
+            android:textColorHint="@color/mp_800"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:hint="@string/review_instrument">
+            <AutoCompleteTextView
+                android:fontFamily="@font/mclassic"
+                android:id="@+id/dropdown_instrument"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:dropDownHeight="100dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:background="@color/mp_600"
+            android:textColorHint="@color/mp_800"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:hint="@string/review_content">
+            <AutoCompleteTextView
+                android:fontFamily="@font/mclassic"
+                android:id="@+id/dropdown_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:dropDownHeight="100dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <Button
+            android:id="@+id/btn_review_complete"
+            android:backgroundTint="@color/mp_800"
+            android:text="@string/review_save"
+            android:textSize="16sp"
+            android:fontFamily="@font/mclassic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 </ScrollView>
