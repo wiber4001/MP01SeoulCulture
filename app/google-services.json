@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "26464927013",
+    "project_id": "mp01seoulculturewny2023",
+    "storage_bucket": "mp01seoulculturewny2023.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:26464927013:android:f6cf234c0330ae28006ecc",
+        "android_client_info": {
+          "package_name": "com.wny2023.mp01seoulculture"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "26464927013-mcijre78j0s2uvvjc83ch45ipvg5h3hv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhTOysoSnAfP8CKxwNUycqyG4hUeRVomo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "26464927013-mcijre78j0s2uvvjc83ch45ipvg5h3hv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
