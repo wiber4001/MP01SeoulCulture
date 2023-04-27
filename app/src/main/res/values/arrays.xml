@@ -47,4 +47,11 @@
         <item>중구</item>
         <item>중랑구</item>
     </string-array>
+    <string-array name="evaluation">
+        <item>매우 괜찮음</item>
+        <item>괜찮음</item>
+        <item>나쁘지 않음</item>
+        <item>좋지 않음</item>
+        <item>나쁨</item>
+    </string-array>
 </resources>

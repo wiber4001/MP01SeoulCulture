@@ -10,45 +10,52 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <HorizontalScrollView
             android:id="@+id/container_imgs"
             android:layout_width="wrap_content"
             android:layout_height="240dp">
+
             <LinearLayout
-                android:orientation="horizontal"
-                android:background="@color/mp_400"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:background="@color/mp_400"
+                android:orientation="horizontal"
                 android:padding="8dp">
+
                 <ImageView
                     android:id="@+id/img1"
-                    android:src="@drawable/profile01"
-                    android:scaleType="fitCenter"
-                    android:layout_marginRight="8dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="8dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/profile01" />
+
                 <ImageView
                     android:id="@+id/img2"
-                    android:src="@drawable/profile02"
-                    android:scaleType="fitCenter"
-                    android:layout_marginRight="8dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="8dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/profile02" />
+
                 <ImageView
                     android:id="@+id/img3"
-                    android:src="@drawable/profile01"
-                    android:scaleType="fitCenter"
-                    android:layout_marginRight="8dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="8dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/profile01" />
+
                 <ImageView
                     android:id="@+id/img4"
-                    android:src="@drawable/profile02"
-                    android:scaleType="fitCenter"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/profile02" />
             </LinearLayout>
         </HorizontalScrollView>
+
         <Button
             android:id="@+id/btn_photoselect"
             android:text="@string/btn_photo"
@@ -87,6 +94,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:id="@+id/tv_place_eval"
+            android:background="@color/mp_600"
+            android:text="@string/review_place"
+            android:fontFamily="@font/mclassic"
+            android:textSize="16sp"
+            android:padding="8dp"
+            android:textColor="@color/mp_800"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
         <com.google.android.material.textfield.TextInputLayout
             android:background="@color/mp_600"
             android:textColorHint="@color/mp_800"
@@ -102,6 +120,17 @@
                 android:inputType="none"
                 android:dropDownHeight="100dp"/>
         </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:id="@+id/tv_inst_eval"
+            android:background="@color/mp_600"
+            android:text="@string/review_instrument"
+            android:fontFamily="@font/mclassic"
+            android:textSize="16sp"
+            android:padding="8dp"
+            android:textColor="@color/mp_800"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
         <com.google.android.material.textfield.TextInputLayout
             android:background="@color/mp_600"
             android:textColorHint="@color/mp_800"
@@ -117,6 +146,17 @@
                 android:inputType="none"
                 android:dropDownHeight="100dp"/>
         </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:id="@+id/tv_content_eval"
+            android:background="@color/mp_600"
+            android:text="@string/review_content"
+            android:fontFamily="@font/mclassic"
+            android:textSize="16sp"
+            android:padding="8dp"
+            android:textColor="@color/mp_800"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
         <com.google.android.material.textfield.TextInputLayout
             android:background="@color/mp_600"
             android:textColorHint="@color/mp_800"

@@ -46,7 +46,7 @@
     <string name="review_instrument">시설평가</string>
     <string name="review_content">내용평가</string>
     <string name="review_save">저장 및 게시하기</string>
-    <string name="review_short">간단리뷰작성</string>
+    <string name="review_short">간단리뷰</string>
 
 
 </resources>
