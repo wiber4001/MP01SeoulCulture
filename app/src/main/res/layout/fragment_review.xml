@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/mp_400">
+        <Button
+            android:id="@+id/btn_review_add"
+            android:drawableTop="@drawable/ic_plus"
+            android:text="@string/review_add"
+            android:textStyle="italic"
+            android:textColor="@color/mp_800"
+            android:textSize="16sp"
+            android:fontFamily="@font/mclassic"
+            android:backgroundTint="@color/mp_600"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/container_review"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            android:backgroundTint="@color/mp_600"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            android:src="@drawable/ic_plus"
-            android:layout_margin="8dp" />
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+            android:layout_weight="1"/>
+</LinearLayout>
