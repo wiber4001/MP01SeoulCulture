@@ -6,8 +6,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 
 import androidx.fragment.app.Fragment
+import com.wny2023.mp01seoulculture.G
 import com.wny2023.mp01seoulculture.activities.ReviewEditActivity
 import com.wny2023.mp01seoulculture.databinding.FragmentReviewBinding
 
@@ -31,9 +33,16 @@ class ReviewFragment:Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btnReviewAdd.setOnClickListener { view->
-            var intent =Intent(requireContext(),ReviewEditActivity::class.java)
-            intent.run { context?.startActivity(intent) }
-            Log.d("FAB","intent작동되나")
+            if(G.member?.id==null) {
+                Toast.makeText(requireContext(), "회원 전용 기능입니다.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            else{
+                var intent =Intent(requireContext(),ReviewEditActivity::class.java)
+                intent.run { context?.startActivity(intent) }
+                Log.d("FAB","intent작동되나")
+            }
+
         }
     }
 
