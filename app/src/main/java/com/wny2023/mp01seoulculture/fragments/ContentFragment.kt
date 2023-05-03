@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -49,13 +50,15 @@ class ContentFragment: Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var eventTypes: Array<out String> =resources.getStringArray(array.content_type)
-        var eventDistricts: Array<out String> =resources.getStringArray(array.district)
-//        val adapter1 = ArrayAdapter(requireContext(),)
-        var adapter1=ArrayAdapter(requireContext(),R.layout.list_simple,eventTypes)
-        var adapter2=ArrayAdapter(requireContext(),R.layout.list_simple,eventDistricts)
-        binding.etEventdistrict.setAdapter(adapter2)
+        var eventTypes: Array<String> =resources.getStringArray(array.content_type)
+        var adapter1=ArrayAdapter(requireContext(),list_simple,eventTypes)
         binding.etEventtype.setAdapter(adapter1)
+
+        val autoCompleteTextView:AutoCompleteTextView = binding.etEventtype
+        autoCompleteTextView.setAdapter(adapter1)
+//        var eventDistricts: Array<out String> =resources.getStringArray(array.district)
+//        var adapter2=ArrayAdapter(requireContext(),R.layout.list_simple,eventDistricts)
+//        binding.etEventdistrict.setAdapter(adapter2)
     }
 
     private fun loadData(){

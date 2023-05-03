@@ -36,4 +36,11 @@
         <item name="colorControlNormal">@color/mp_800</item>
         <item name="android:textColor">@color/mp_400</item>
     </style>
+    <style name="HintTextAppearance">
+        <item name="android:fontFamily">@font/mclassic</item>
+        <item name="android:textColorPrimary">@color/mp_800</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textSize">8sp</item>
+    </style>
 </resources>
