@@ -52,8 +52,6 @@ class ContentFragment: Fragment(){
         super.onViewCreated(view, savedInstanceState)
         var eventTypes: Array<String> =resources.getStringArray(array.content_type)
         var adapter1=ArrayAdapter(requireContext(),list_simple,eventTypes)
-        binding.etEventtype.setAdapter(adapter1)
-
         val autoCompleteTextView:AutoCompleteTextView = binding.etEventtype
         autoCompleteTextView.setAdapter(adapter1)
 //        var eventDistricts: Array<out String> =resources.getStringArray(array.district)

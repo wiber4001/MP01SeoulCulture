@@ -117,6 +117,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_place"
             android:background="@color/mp_600"
             android:textColorHint="@color/mp_800"
             android:layout_width="match_parent"
@@ -143,6 +144,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_equip"
             android:background="@color/mp_600"
             android:textColorHint="@color/mp_800"
             android:layout_width="match_parent"
@@ -169,6 +171,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_content"
             android:background="@color/mp_600"
             android:textColorHint="@color/mp_800"
             android:layout_width="match_parent"
