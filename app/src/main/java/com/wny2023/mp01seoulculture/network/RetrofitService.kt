@@ -39,6 +39,9 @@ interface RetrofitService {
     @GET("/565842635777696236346c4b424264/json/culturalEventInfo/1/500/")
     fun loadServerAll() : Call<Response>
 
+    @GET("/565842635777696236346c4b424264/json/culturalEventInfo/1/500/{CODENAME}")
+    fun loadServerPart(@Path("CODENAME") CODENAME:String) : Call<Response>
+
     //즐겨찾기 서버에 저장하기
     @Multipart
     @POST("mpproject/favoritSendDB.php")

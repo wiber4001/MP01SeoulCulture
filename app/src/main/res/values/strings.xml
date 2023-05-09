@@ -27,7 +27,7 @@
     <string name="open">open</string>
     <string name="close">close</string>
     <string name="item_title">행사이름</string>
-    <string name="item_type">행사장르</string>
+    <string name="item_codename">행사장르</string>
     <string name="item_addr">행사주소</string>
     <string name="item_district">행사구</string>
     <string name="item_during">행사기간</string>

@@ -31,6 +31,7 @@ class ContentAdapter (var context:Activity, var items:MutableList<Item>): Adapte
     override fun getItemCount(): Int = items.size
     override fun onBindViewHolder(holder: ContentAdapter.VH, position: Int) {
         var item:Item = items[position]
+        holder.binding.tvEvcodename.text=item.CODENAME
         holder.binding.tvEvaddr.text=item.PLACE
         holder.binding.tvEvdistrict.text=item.GUNAME
         holder.binding.tvEvduring.text=item.DATE

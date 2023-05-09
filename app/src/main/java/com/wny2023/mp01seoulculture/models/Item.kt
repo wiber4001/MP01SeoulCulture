@@ -3,6 +3,7 @@ package com.wny2023.mp01seoulculture.models
 import java.io.Serializable
 
 data class Item(var TITLE:String,
+                var CODENAME:String,
                 var GUNAME:String,
                 var PLACE:String,
                 var DATE:String,
