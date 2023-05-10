@@ -39,6 +39,7 @@ interface RetrofitService {
     @GET("/565842635777696236346c4b424264/json/culturalEventInfo/1/500/")
     fun loadServerAll() : Call<Response>
 
+    //행사코드네임분류로 불러오기
     @GET("/565842635777696236346c4b424264/json/culturalEventInfo/1/500/{CODENAME}")
     fun loadServerPart(@Path("CODENAME") CODENAME:String) : Call<Response>
 

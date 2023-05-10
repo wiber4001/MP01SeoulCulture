@@ -51,6 +51,7 @@ class ContentDetailActivity : AppCompatActivity() {
 
         //화면설정
         Glide.with(this).load(itemClick.MAIN_IMG).into(binding.imgMain)
+        binding.tvCodename.text=itemClick.CODENAME
         binding.tvDistrict.text=itemClick.GUNAME
         binding.tvFee.text=itemClick.USE_FEE
         binding.tvPlace.text=itemClick.PLACE

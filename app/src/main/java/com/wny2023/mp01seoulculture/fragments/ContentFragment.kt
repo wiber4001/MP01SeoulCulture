@@ -5,6 +5,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemClickListener
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
@@ -51,6 +53,12 @@ class ContentFragment: Fragment(){
         var adapter1=ArrayAdapter(requireContext(),list_simple,eventTypes)
         val autoCompleteTextView:AutoCompleteTextView = binding.etEventtype
         autoCompleteTextView.setAdapter(adapter1)
+
+        //드롭다운메뉴 선택시 작동
+        autoCompleteTextView.setOnItemClickListener { parent, view, position, id ->
+            var item=parent.getItemAtPosition(position).toString()
+            reloadData(item);
+        }
     }
 
     private fun loadData(){
