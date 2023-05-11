@@ -68,10 +68,5 @@ interface RetrofitService {
     @POST("mpproject/deleteMembers.php")
     fun deleteAcoountServer(@Field("id") id:String, @Field("pass") pass:String): Call<String?>?
 
-    //네이버블로그검색
-    //헤더값이 고정적이라면, 굳이 매번 파라미터로 받을 이유가 없음
-    @Headers("X-Naver-Client-Id:z80Up7KE8hFszjYucF1y","X-Naver-Client-Secret:_AczEHOvb7")
-    @GET("/v1/search/blog.json?display=50")
-    fun searchData(@Query("query") query: String) : Call<NaverBlogReviewResponse>
 
 }

@@ -5,8 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.AdapterView.OnItemClickListener
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
@@ -47,8 +45,8 @@ class ContentFragment: Fragment(){
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onResume() {
+        super.onResume()
         var eventTypes: Array<String> =resources.getStringArray(array.content_type)
         var adapter1=ArrayAdapter(requireContext(),list_simple,eventTypes)
         val autoCompleteTextView:AutoCompleteTextView = binding.etEventtype
@@ -57,7 +55,10 @@ class ContentFragment: Fragment(){
         //드롭다운메뉴 선택시 작동
         autoCompleteTextView.setOnItemClickListener { parent, view, position, id ->
             var item=parent.getItemAtPosition(position).toString()
-            reloadData(item);
+            Toast.makeText(requireContext(), "${item}선택", Toast.LENGTH_SHORT).show()
+            items.clear()
+            if(item.equals("전체")) loadData()
+            else reloadData(item)
         }
     }
 
@@ -123,6 +124,6 @@ class ContentFragment: Fragment(){
 
             }
         })
-    }//loadData()
+    }//reloadData()
 
 }
