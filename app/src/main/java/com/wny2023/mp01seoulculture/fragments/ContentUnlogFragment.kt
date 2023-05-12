@@ -5,11 +5,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wny2023.mp01seoulculture.R
+import com.wny2023.mp01seoulculture.adapters.ContentAdapter
 import com.wny2023.mp01seoulculture.adapters.ContentUnlogAdapter
 import com.wny2023.mp01seoulculture.databinding.FragmentContentBinding
 import com.wny2023.mp01seoulculture.models.Item
@@ -42,6 +45,22 @@ class ContentUnlogFragment: Fragment(){
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        var eventTypes: Array<String> =resources.getStringArray(R.array.content_type)
+        var adapter1= ArrayAdapter(requireContext(), R.layout.list_simple,eventTypes)
+        val autoCompleteTextView: AutoCompleteTextView = binding.etEventtype
+        autoCompleteTextView.setAdapter(adapter1)
+
+        //드롭다운메뉴 선택시 작동
+        autoCompleteTextView.setOnItemClickListener { parent, view, position, id ->
+            var item=parent.getItemAtPosition(position).toString()
+            Toast.makeText(requireContext(), "${item}선택", Toast.LENGTH_SHORT).show()
+            items.clear()
+            if(item.equals("전체")) loadData()
+            else reloadData(item)
+        }
+    }
     private fun loadData(){
         //retrofit
         var retrofit:Retrofit = RetrofitHelper
@@ -73,5 +92,37 @@ class ContentUnlogFragment: Fragment(){
             }
         })
     }//loadData()
+
+    private fun reloadData(codename:String){
+        //retrofit
+        var retrofit:Retrofit = RetrofitHelper
+            .getRetrofitInstance("http://openapi.seoul.go.kr:8088")
+        var retrofitService = retrofit.create(RetrofitService::class.java)
+
+        var call: Call<Response> = retrofitService.loadServerPart(codename)
+        call.enqueue(object : Callback<Response> {
+            override fun onResponse(call: Call<Response>, response: retrofit2.Response<Response>) {
+                var responseAPI: Response? = response.body()
+                if (responseAPI != null) {
+                    var itemsAPI:MutableList<Item> = responseAPI.culturalEventInfo.row!!
+                    Toast.makeText(requireContext(), "Total:${itemsAPI.size} 개", Toast.LENGTH_SHORT).show()
+                    items=itemsAPI
+                    contentAdapter = ContentUnlogAdapter(requireActivity(),items)
+                    binding.containerRecycler.adapter = contentAdapter
+                    recyclerView=view?.findViewById(R.id.container_recycler)!!
+                    recyclerView.adapter=contentAdapter
+                    recyclerView.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
+
+                } else{
+                    Toast.makeText(requireContext(), "API불러오기실패", Toast.LENGTH_SHORT).show()
+                }
+            }
+            override fun onFailure(call: Call<Response>, t: Throwable) {
+                Toast.makeText(requireContext(), "Error:${t.message}", Toast.LENGTH_SHORT).show()
+                Log.i("ErrorAPI","Error:${t.message}")
+
+            }
+        })
+    }//reloadData()
 
 }
