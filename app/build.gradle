@@ -65,7 +65,4 @@ dependencies {
     //Firebase의 (원하는) product SDK추가
     implementation 'com.google.firebase:firebase-firestore-ktx'
 
-//    //카카오맵SDK
-//    //kakao MAP SDK 추가
-//    implementation files('libs/libDaumMapAndroid.jar')
 }

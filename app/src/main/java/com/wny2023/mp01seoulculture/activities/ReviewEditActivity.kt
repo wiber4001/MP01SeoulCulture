@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View.OnClickListener
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
+import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContentProviderCompat.requireContext
 import com.google.android.material.textfield.TextInputLayout
@@ -24,14 +26,20 @@ class ReviewEditActivity : AppCompatActivity() {
 
     val binding: ActivityReviewEditBinding by lazy { ActivityReviewEditBinding.inflate(layoutInflater) }
     //review아이템 초기화
-    var review= Review(G.member!!.id,"","","","","","","","")
+    var review= Review(G.member!!.id, mutableListOf(),"","","","")
 //    val db = Firebase.firestore
     val pickMultipleMedia =
         registerForActivityResult(ActivityResultContracts.PickMultipleVisualMedia(4)) { uris ->
             // Callback is invoked after the user selects media items or closes the
             // photo picker.
             if (uris.isNotEmpty()) {
-                Log.d("PhotoPicker", "Number of items selected: ${uris.size}")
+//                Log.d("PhotoPicker", "Number of items selected: ${uris.size}")
+                uris.forEach {uri ->
+                    Log.d("PhotoPicker", "Number of items selected: ${uris.size}")
+                    Log.d("PhotoPicker", "${uri.toString()}")
+                    review.reviewImgs.add(uri)
+                }
+
             } else {
                 Log.d("PhotoPicker", "No media selected")
             }
@@ -39,6 +47,11 @@ class ReviewEditActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        //사진선택버튼
+        binding.btnPhotoselect.setOnClickListener ( {
+            pickMultipleMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageAndVideo))
+        })
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayShowHomeEnabled(true)
