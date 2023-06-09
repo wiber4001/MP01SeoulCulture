@@ -1,6 +1,7 @@
 package com.wny2023.mp01seoulculture.activities
 
 
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -13,12 +14,14 @@ import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.wny2023.mp01seoulculture.G
 import com.wny2023.mp01seoulculture.R
+import com.wny2023.mp01seoulculture.adapters.PhotoAdapter
 import com.wny2023.mp01seoulculture.databinding.ActivityReviewEditBinding
 import com.wny2023.mp01seoulculture.models.Review
 
@@ -36,7 +39,7 @@ class ReviewEditActivity : AppCompatActivity() {
 //                Log.d("PhotoPicker", "Number of items selected: ${uris.size}")
                 uris.forEach {uri ->
                     Log.d("PhotoPicker", "Number of items selected: ${uris.size}")
-                    Log.d("PhotoPicker", "${uri.toString()}")
+                    Log.d("PhotoPicker", "${uri}")
                     review.reviewImgs.add(uri)
                 }
 
@@ -44,14 +47,14 @@ class ReviewEditActivity : AppCompatActivity() {
                 Log.d("PhotoPicker", "No media selected")
             }
         }
+    //사진 선택창 보여주기위한 리사이클러 뷰
+    lateinit var recyclerView: RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         //사진선택버튼
-        binding.btnPhotoselect.setOnClickListener ( {
-            pickMultipleMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageAndVideo))
-        })
+        binding.btnPhotoselect.setOnClickListener {view->selectedPhoto()}
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayShowHomeEnabled(true)
@@ -90,7 +93,7 @@ class ReviewEditActivity : AppCompatActivity() {
         })
         //작성버튼 작동
 
-    }
+    }//onCreate()
 
     //뒤로가기 버튼 작동하게 하기
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -100,5 +103,14 @@ class ReviewEditActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-
+    fun selectedPhoto(){
+        var imgs:MutableList<Uri> = mutableListOf()
+        pickMultipleMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageAndVideo))
+        imgs=review.reviewImgs
+        var adapter4=PhotoAdapter(this,imgs)
+        binding.imgRecycler.adapter=adapter4
+        recyclerView=binding.imgRecycler
+        recyclerView.adapter=adapter4
+        Log.d("selectphoto","${imgs}")
+    }
 }
