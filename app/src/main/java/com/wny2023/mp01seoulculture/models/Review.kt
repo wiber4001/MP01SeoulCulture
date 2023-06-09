@@ -6,6 +6,7 @@ import java.io.Serializable
 data class Review(
     var id:String,
     var reviewImgs:MutableList<Uri>,
+    var reviewTitle:String?,
     var reviewLong:String?,
     var reviewPlace: String,
     var reviewEquip: String,

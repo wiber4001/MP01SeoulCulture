@@ -7,8 +7,8 @@
         android:icon="@drawable/ic_location"
         app:showAsAction="always"/>
     <item
-        android:id="@+id/menu_favorit"
-        android:title="@string/menu_favorit"
-        android:icon="@drawable/ic_favorit"
+        android:id="@+id/menu_reviewedit"
+        android:title="@string/menu_reviewedit"
+        android:icon="@drawable/ic_plus"
         app:showAsAction="always"/>
 </menu>

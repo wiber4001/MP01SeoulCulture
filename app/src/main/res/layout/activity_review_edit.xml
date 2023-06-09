@@ -22,57 +22,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"/>
         </com.google.android.material.appbar.AppBarLayout>
+<!--  여러장의 사진 선택하고 보여주는 horizontal scrollview 기능 리사이클러뷰-->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/imgRecycler"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="horizontal"/>
-<!--        <HorizontalScrollView-->
-<!--            android:id="@+id/container_imgs"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="240dp">-->
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:background="@color/mp_400"-->
-<!--                android:orientation="horizontal"-->
-<!--                android:padding="8dp">-->
-
-<!--                <ImageView-->
-<!--                    android:id="@+id/img1"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:layout_marginRight="8dp"-->
-<!--                    android:scaleType="fitCenter"-->
-<!--                    android:src="@drawable/profile01" />-->
-
-<!--                <ImageView-->
-<!--                    android:id="@+id/img2"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:layout_marginRight="8dp"-->
-<!--                    android:scaleType="fitCenter"-->
-<!--                    android:src="@drawable/profile02" />-->
-
-<!--                <ImageView-->
-<!--                    android:id="@+id/img3"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:layout_marginRight="8dp"-->
-<!--                    android:scaleType="fitCenter"-->
-<!--                    android:src="@drawable/profile01" />-->
-
-<!--                <ImageView-->
-<!--                    android:id="@+id/img4"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:scaleType="fitCenter"-->
-<!--                    android:src="@drawable/profile02" />-->
-<!--            </LinearLayout>-->
-<!--        </HorizontalScrollView>-->
-
         <Button
             android:id="@+id/btn_photoselect"
             android:text="@string/btn_photo"

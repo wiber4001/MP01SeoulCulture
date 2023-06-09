@@ -1,5 +1,6 @@
 package com.wny2023.mp01seoulculture.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -60,8 +61,6 @@ class ContentDetailActivity : AppCompatActivity() {
         binding.tvProgram.text=itemClick.PROGRAM
         binding.tvTitle.text=itemClick.TITLE
 
-
-
     }//onCreate()
 
     override fun onResume() {
@@ -84,13 +83,27 @@ class ContentDetailActivity : AppCompatActivity() {
         when(item.itemId){
             android.R.id.home -> finish()
             R.id.menu_map -> mapSearch()
-            R.id.menu_favorit -> Toast.makeText(this, "(구현예정)리뷰작성기능", Toast.LENGTH_SHORT).show()
+            R.id.menu_reviewedit -> reviewEdit()
+//                Toast.makeText(this, "(구현예정)리뷰작성기능", Toast.LENGTH_SHORT).show()
         }
         return super.onOptionsItemSelected(item)
     }
 
     private fun mapSearch(){
         Toast.makeText(this, "(구현예정) 주소로 장소검색", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun reviewEdit(){
+        if(G.member?.id==null) {
+            Toast.makeText(this, "회원 전용 기능입니다.", Toast.LENGTH_SHORT).show()
+            return
+        }
+        else{
+            var intent = Intent(this,ReviewEditActivity::class.java)
+            intent.putExtra("title",GItem.g_item?.TITLE)
+            startActivity(intent)
+            Log.d("review","intent작동되나")
+        }
     }
 
     private fun clickFavorit(){

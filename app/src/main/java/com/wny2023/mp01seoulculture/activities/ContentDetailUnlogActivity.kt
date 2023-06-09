@@ -70,7 +70,7 @@ class ContentDetailUnlogActivity : AppCompatActivity() {
         when(item.itemId){
             android.R.id.home -> finish()
             R.id.menu_map -> mapSearch()
-            R.id.menu_favorit -> Toast.makeText(this, "회원전용 서비스 입니다.", Toast.LENGTH_SHORT).show()
+            R.id.menu_reviewedit -> Toast.makeText(this, "회원전용 서비스 입니다.", Toast.LENGTH_SHORT).show()
         }
         return super.onOptionsItemSelected(item)
     }

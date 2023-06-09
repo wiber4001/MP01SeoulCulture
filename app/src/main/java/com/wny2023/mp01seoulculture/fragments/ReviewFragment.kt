@@ -32,6 +32,7 @@ class ReviewFragment:Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.btnReviewAdd.setOnClickListener { view->
             if(G.member?.id==null) {
                 Toast.makeText(requireContext(), "회원 전용 기능입니다.", Toast.LENGTH_SHORT).show()
