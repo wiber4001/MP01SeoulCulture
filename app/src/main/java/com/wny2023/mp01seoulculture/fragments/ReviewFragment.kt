@@ -33,18 +33,18 @@ class ReviewFragment:Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnReviewAdd.setOnClickListener { view->
-            if(G.member?.id==null) {
-                Toast.makeText(requireContext(), "회원 전용 기능입니다.", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-            else{
-                var intent =Intent(requireContext(),ReviewEditActivity::class.java)
-                intent.run { context?.startActivity(intent) }
-                Log.d("FAB","intent작동되나")
-            }
-
-        }
+//        binding.btnReviewAdd.setOnClickListener { view->
+//            if(G.member?.id==null) {
+//                Toast.makeText(requireContext(), "회원 전용 기능입니다.", Toast.LENGTH_SHORT).show()
+//                return@setOnClickListener
+//            }
+//            else{
+//                var intent =Intent(requireContext(),ReviewEditActivity::class.java)
+//                intent.run { context?.startActivity(intent) }
+//                Log.d("FAB","intent작동되나")
+//            }
+//
+//        }
     }
 
 }

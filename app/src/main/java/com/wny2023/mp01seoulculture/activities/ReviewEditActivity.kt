@@ -15,6 +15,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import com.google.firebase.storage.ktx.storage
 import com.wny2023.mp01seoulculture.G
@@ -52,12 +53,16 @@ class ReviewEditActivity : AppCompatActivity() {
         }
     //사진 선택창 보여주기위한 리사이클러 뷰
     lateinit var recyclerView: RecyclerView
+    var imgs:MutableList<Uri> = mutableListOf()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         //사진선택버튼, 누르고 여러장 선택하여 미리보기
-        binding.btnPhotoselect.setOnClickListener {view->selectedPhoto()}
+        binding.btnPhotoselect.setOnClickListener { view->
+            selectedPhoto()
+        }
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayShowHomeEnabled(true)
@@ -100,9 +105,20 @@ class ReviewEditActivity : AppCompatActivity() {
         })
 
         //작성버튼 작동
-        binding.btnReviewComplete.setOnClickListener { savedReview() }
+        binding.btnReviewComplete.setOnClickListener { view->
+            savedImgReview()
+        }
+
 
     }//onCreate()
+
+    override fun onResume() {
+        super.onResume()
+        var adapter4=PhotoAdapter(this,imgs)
+        binding.imgRecycler.adapter=adapter4
+        recyclerView=binding.imgRecycler
+        recyclerView.adapter=adapter4
+    }
 
     //뒤로가기 버튼 작동하게 하기
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -112,57 +128,26 @@ class ReviewEditActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    //사진 업로드 및 확인하게 하기
-    fun selectedPhoto(){
-        var imgs:MutableList<Uri> = mutableListOf()
+    //사진 업로드 버튼 작동 기능
+    fun selectedPhoto() {
         pickMultipleMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageAndVideo))
         imgs=review.reviewImgs
-        var adapter4=PhotoAdapter(this,imgs)
-        binding.imgRecycler.adapter=adapter4
-        recyclerView=binding.imgRecycler
-        recyclerView.adapter=adapter4
-//        Log.d("selectphoto","${imgs}")
+
     }
 
-    fun savedReview(){
-        // 저장소 세팅
-        val storage= Firebase.storage
-        // 저장소 참조변수 세팅
-        var storageRef = storage.reference
-        // 저장된 uri주소들 기록 리스트
-        var imgURLs= mutableListOf<String>()
+    fun savedImgReview(){
 
-        //이미지 저장하기
-        if(review.reviewImgs.size==0) return
-        else {
-            review.reviewImgs.forEach { uri->
-                var sdf = SimpleDateFormat("yyyyMMddHHmmss")
-                var imgName:String ="img_"+sdf.format(Date())
-                var imgRef=storage.getReference("reviewImgs/"+imgName)
-                var downURL = imgRef.putFile(uri)
-                var urlTask= downURL.continueWithTask { task ->
-                    if (!task.isSuccessful) {
-                        task.exception?.let {
-                            throw it
-                        }
-                    }
-                    imgRef.downloadUrl
-                }.addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        val downloadUri = task.result
-                    } else {
-                        Log.d("uriFail","upload failed")
-                    }
-                }
-                imgURLs.add(downURL.toString())
-                Toast.makeText(this, downURL.toString(), Toast.LENGTH_SHORT).show()
-            }//forEach
+        // 저장소 세팅
+        val storage:FirebaseStorage = Firebase.storage
+        val sdf= SimpleDateFormat("yyyyMMddHHmmss")
+        var name:MutableList<String> = mutableListOf()
+        name.toString().forEach { filename->
+            name.add(filename+sdf.format(Date()))
         }
 
+    }
 
-
-
-
+    fun savedInfoReview(){
 
     }
 }
