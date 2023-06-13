@@ -14,6 +14,8 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.tasks.OnSuccessListener
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
@@ -22,6 +24,7 @@ import com.wny2023.mp01seoulculture.G
 import com.wny2023.mp01seoulculture.R
 import com.wny2023.mp01seoulculture.adapters.PhotoAdapter
 import com.wny2023.mp01seoulculture.databinding.ActivityReviewEditBinding
+import com.wny2023.mp01seoulculture.models.Photos
 import com.wny2023.mp01seoulculture.models.Review
 import java.io.File
 import java.net.URL
@@ -34,6 +37,7 @@ class ReviewEditActivity : AppCompatActivity() {
     val binding: ActivityReviewEditBinding by lazy { ActivityReviewEditBinding.inflate(layoutInflater) }
     //review아이템 초기화
     var review= Review(G.member!!.id, mutableListOf(),"","","","","")
+    var photos= Photos(mutableListOf())
 
     val pickMultipleMedia =
         registerForActivityResult(ActivityResultContracts.PickMultipleVisualMedia(4)) { uris ->
@@ -44,7 +48,7 @@ class ReviewEditActivity : AppCompatActivity() {
                 uris.forEach {uri ->
                     Log.d("PhotoPicker", "Number of items selected: ${uris.size}")
                     Log.d("PhotoPicker", "${uri}")
-                    review.reviewImgs.add(uri)
+                    photos.imgUris.add(uri)
                 }
 
             } else {
@@ -72,6 +76,9 @@ class ReviewEditActivity : AppCompatActivity() {
         //제목은 intent에서 넘겨받기
         review.reviewTitle=intent?.getStringExtra("title").toString()
         binding.tvTitle.setText(review.reviewTitle!!)
+
+        //긴 글쓰기
+        review.reviewLong = binding.etLongreview.text.toString()
 
         //스피너버튼 대체 textinputlayout
         var evalPlace: Array<String> = resources.getStringArray(R.array.evaluation)
@@ -105,9 +112,7 @@ class ReviewEditActivity : AppCompatActivity() {
         })
 
         //작성버튼 작동
-        binding.btnReviewComplete.setOnClickListener { view->
-            savedImgReview()
-        }
+        binding.btnReviewComplete.setOnClickListener { savedReview() }
 
 
     }//onCreate()
@@ -131,23 +136,45 @@ class ReviewEditActivity : AppCompatActivity() {
     //사진 업로드 버튼 작동 기능
     fun selectedPhoto() {
         pickMultipleMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageAndVideo))
-        imgs=review.reviewImgs
+        imgs=photos.imgUris
 
     }
 
-    fun savedImgReview(){
-
+    fun savedReview(){
         // 저장소 세팅
         val storage:FirebaseStorage = Firebase.storage
         val sdf= SimpleDateFormat("yyyyMMddHHmmss")
-        var name:MutableList<String> = mutableListOf()
-        name.toString().forEach { filename->
-            name.add(filename+sdf.format(Date()))
+
+        if(photos.imgUris.size==0){
+            savedInfoReview()
+            return
+        }else{
+            for(i:Int in photos.imgUris.indices){
+                var name="IMG_"+sdf.format(Date())+".png"
+                var imgRef=storage.getReference("review/"+name)
+                imgRef.putFile(photos.imgUris[i]).addOnSuccessListener {
+                    if(imgRef!=null){
+                        Log.d("uploadphoto","upload${i}")
+                        review.reviewImgs.add(imgRef.downloadUrl.toString())
+                        Log.d("uploadphoto","${review.reviewImgs[i]}")
+                        if (review.reviewImgs.size==photos.imgUris.size){
+                            savedInfoReview()
+                        }
+                    }
+                }.addOnFailureListener {
+                    Toast.makeText(this, "파일업로드 오류:"+it, Toast.LENGTH_SHORT).show()
+                    Log.d("uploadphoto","${it}")
+                }
+            }//멀티 이미지 업로드 for문
         }
 
-    }
+    }//savedReview()
 
     fun savedInfoReview(){
-
+        var firestore = FirebaseFirestore.getInstance()
+        firestore.collection("reviews").document("reviewDoc").set(review).addOnSuccessListener {
+            Log.d("TAG", "DocumentSnapshot successfully written!")
+            Toast.makeText(this, "리뷰업로드 성공", Toast.LENGTH_SHORT).show()}
+            .addOnFailureListener { e -> Log.w("TAG", "Error writing document", e) }
     }
 }

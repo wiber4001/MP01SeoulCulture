@@ -55,6 +55,7 @@
             app:counterMaxLength="140"
             app:counterEnabled="true">
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_longreview"
                 android:background="@color/mp_400"
                 android:textSize="16sp"
                 android:fontFamily="@font/mclassic"
