@@ -44,7 +44,7 @@ class MainUnlogActivity : AppCompatActivity() {
                     clickFavorit()
                 }
                 R.id.item_review -> {
-                    Toast.makeText(this, "(구현예정) 리뷰를 엽니다.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "리뷰를 엽니다.", Toast.LENGTH_SHORT).show()
                     clickReview()
                 }
                 R.id.item_edit -> {
@@ -83,12 +83,12 @@ class MainUnlogActivity : AppCompatActivity() {
 
     //구현예정
     private fun clickFavorit(){
-
+        bnv.selectedItemId=R.id.bnv_favorit
     }
     private fun clickPhotoEdit(){
 
     }
     private fun clickReview(){
-
+        bnv.selectedItemId=R.id.bnv_review
     }
 }

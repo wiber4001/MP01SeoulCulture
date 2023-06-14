@@ -1,6 +1,7 @@
 package com.wny2023.mp01seoulculture.activities
 
 
+import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -29,6 +30,7 @@ import com.wny2023.mp01seoulculture.models.Review
 import java.io.File
 import java.net.URL
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Date
 
 
@@ -143,23 +145,26 @@ class ReviewEditActivity : AppCompatActivity() {
     fun savedReview(){
         // 저장소 세팅
         val storage:FirebaseStorage = Firebase.storage
-        val sdf= SimpleDateFormat("yyyyMMddHHmmss")
+        var sdf= System.currentTimeMillis()
+        var vnum=photos.imgUris.size
 
-        if(photos.imgUris.size==0){
+        if(vnum==0){
             savedInfoReview()
             return
         }else{
             for(i:Int in photos.imgUris.indices){
-                var name="IMG_"+sdf.format(Date())+".png"
-                var imgRef=storage.getReference("review/"+name)
+                var fileUrl =photos.imgUris[i].toString()
+                var filename=fileUrl.substring(fileUrl.lastIndexOf("/")+1,fileUrl.length)
+                var name="IMG_"+sdf+filename +".png"
+                var imgRef=storage.getReference().child("review").child(name)
                 imgRef.putFile(photos.imgUris[i]).addOnSuccessListener {
-                    if(imgRef!=null){
-                        Log.d("uploadphoto","upload${i}")
-                        review.reviewImgs.add(imgRef.downloadUrl.toString())
-                        Log.d("uploadphoto","${review.reviewImgs[i]}")
-                        if (review.reviewImgs.size==photos.imgUris.size){
-                            savedInfoReview()
-                        }
+                    review.reviewImgs.add(imgRef.downloadUrl.toString())
+                    Log.d("uploadphoto","${imgRef.downloadUrl}")
+                    vnum=vnum-1
+
+                    Log.d("uploadphoto","${vnum}")
+                    if (vnum==0){
+                        savedInfoReview()
                     }
                 }.addOnFailureListener {
                     Toast.makeText(this, "파일업로드 오류:"+it, Toast.LENGTH_SHORT).show()
@@ -172,9 +177,17 @@ class ReviewEditActivity : AppCompatActivity() {
 
     fun savedInfoReview(){
         var firestore = FirebaseFirestore.getInstance()
-        firestore.collection("reviews").document("reviewDoc").set(review).addOnSuccessListener {
+        var ref=firestore.collection("reviews")
+        var sdf2=SimpleDateFormat("yyyyMMddHHmmss")
+        var docTime= "DOC_"+sdf2.format(Date())
+        ref.document(docTime).set(review).addOnSuccessListener {
             Log.d("TAG", "DocumentSnapshot successfully written!")
-            Toast.makeText(this, "리뷰업로드 성공", Toast.LENGTH_SHORT).show()}
+            Toast.makeText(this, "리뷰업로드 성공", Toast.LENGTH_SHORT).show()
+            //리뷰화면(메인의 fragment) 으로 넘어가기
+            var intent=Intent(this,MainActivity::class.java)
+            intent.putExtra("fragment", "2")
+            startActivity(intent)
+        }
             .addOnFailureListener { e -> Log.w("TAG", "Error writing document", e) }
     }
 }

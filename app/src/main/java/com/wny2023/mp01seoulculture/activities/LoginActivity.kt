@@ -11,6 +11,7 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.wny2023.mp01seoulculture.AccountPref
 import com.wny2023.mp01seoulculture.G
 import com.wny2023.mp01seoulculture.databinding.ActivityLoginBinding
 import com.wny2023.mp01seoulculture.models.Member
@@ -96,7 +97,12 @@ class LoginActivity : AppCompatActivity() {
             .setPositiveButton("확인", DialogInterface.OnClickListener { dialog, which ->
                 var intent =Intent(this@LoginActivity,MainActivity::class.java)
                 G.member = memberI
-                intent.putExtra("object",member)
+//                intent.putExtra("object",member)
+                //sharedPreference에 로그인정보 넣기
+                //sharedPreference에 현재 멤버 정보 저장
+                AccountPref.prefs.setString("id", G.member?.id ?:"no id")
+                AccountPref.prefs.setString("email", G.member?.email ?:"no email")
+                AccountPref.prefs.setString("imgUrl", G.member?.imgUrl ?:"no image")
                 startActivity(intent)
             }).setNegativeButton("취소",DialogInterface.OnClickListener { dialog, which ->
                 Toast.makeText(this@LoginActivity, "취소하셨습니다.", Toast.LENGTH_SHORT).show()
@@ -120,16 +126,6 @@ class LoginActivity : AppCompatActivity() {
                     return
                 }
                 Toast.makeText(this@LoginActivity, "가입정보가 확인되지 않습니다.", Toast.LENGTH_SHORT).show()
-//                var echo:Member = response.body() as Member
-//                Log.i("ECHOMY","${echo.imgUrl}")
-//                if(echo.id.length!=0){
-//                    confirmLogin(echo)
-////                    Toast.makeText(this@LoginActivity, "${p}", Toast.LENGTH_SHORT).show()
-//                    return
-//                }else{
-//                    Toast.makeText(this@LoginActivity, "가입정보가 확인되지 않습니다.", Toast.LENGTH_SHORT).show()
-//                    return
-//                }
             }
             override fun onFailure(call: Call<Member>, t: Throwable) {
                 Toast.makeText(this@LoginActivity, "${t.message}", Toast.LENGTH_SHORT).show()
