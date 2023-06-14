@@ -11,6 +11,7 @@ import android.widget.Toast
 
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
@@ -22,6 +23,7 @@ import com.wny2023.mp01seoulculture.adapters.ReviewAdapter
 import com.wny2023.mp01seoulculture.databinding.FragmentReviewBinding
 import com.wny2023.mp01seoulculture.models.Item
 import com.wny2023.mp01seoulculture.models.Review
+import java.util.Objects
 
 
 class ReviewFragment:Fragment() {
@@ -46,12 +48,22 @@ class ReviewFragment:Fragment() {
     fun loadReview(){
         var firebase =FirebaseFirestore.getInstance()
         var collectionRef= firebase.collection("reviews")
+        var map:Map<String,Object> = hashMapOf()
         collectionRef.get().addOnSuccessListener {
             Toast.makeText(requireContext(), "aaa"+it.documents.size, Toast.LENGTH_SHORT).show()
-            for( snapshot in it.documents ){
-                snapshot.toObject<Review>()?.let { it1 -> items.add(it1) }
+            for( changes in it.documentChanges ){
+                var snapshot: DocumentSnapshot= changes.document
+                map= snapshot.data as Map<String, Object>
+                var reviewTemp:Review =Review("", mutableListOf(),"","","","","")
+                reviewTemp.id= map.get("id").toString()
+                reviewTemp.reviewTitle = map.get("reviewTitle").toString()
+                reviewTemp.reviewPlace = map.get("reviewPlace").toString()
+                reviewTemp.reviewEquip = map.get("reviewEquip").toString()
+                reviewTemp.reviewContent = map.get("reviewContent").toString()
+                reviewTemp.reviewLong = map.get("reviewLong").toString()
+                reviewTemp.reviewImgs = map.get("reviewImgs") as MutableList<String>
+                items.add(reviewTemp)
             }
-
             reviewAdapter= ReviewAdapter(requireActivity(), items)
             binding.containerReview.adapter=reviewAdapter
             recyclerView=view?.findViewById(R.id.container_review)!!

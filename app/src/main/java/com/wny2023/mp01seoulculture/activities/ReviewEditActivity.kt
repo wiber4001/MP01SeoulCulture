@@ -158,10 +158,11 @@ class ReviewEditActivity : AppCompatActivity() {
                 var name="IMG_"+sdf+filename +".png"
                 var imgRef=storage.getReference().child("review").child(name)
                 imgRef.putFile(photos.imgUris[i]).addOnSuccessListener {
-                    review.reviewImgs.add(imgRef.downloadUrl.toString())
-                    Log.d("uploadphoto","${imgRef.downloadUrl}")
+                    imgRef.downloadUrl.addOnSuccessListener {
+                        review.reviewImgs.add(it.toString())
+                    }
+                    Log.d("uploadphoto","${it.toString()}")
                     vnum=vnum-1
-
                     Log.d("uploadphoto","${vnum}")
                     if (vnum==0){
                         savedInfoReview()
