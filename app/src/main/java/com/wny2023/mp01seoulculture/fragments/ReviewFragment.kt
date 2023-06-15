@@ -64,6 +64,7 @@ class ReviewFragment:Fragment() {
                 reviewTemp.reviewImgs = map.get("reviewImgs") as MutableList<String>
                 items.add(reviewTemp)
             }
+            Log.d("recyclerviewsize","${items.size}")
             reviewAdapter= ReviewAdapter(requireActivity(), items)
             binding.containerReview.adapter=reviewAdapter
             recyclerView=view?.findViewById(R.id.container_review)!!
@@ -76,6 +77,7 @@ class ReviewFragment:Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        items= mutableListOf()
         loadReview()
     }
 }
