@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
+import com.wny2023.mp01seoulculture.R
 import com.wny2023.mp01seoulculture.databinding.RecyclerReviewItemBinding
 import com.wny2023.mp01seoulculture.models.Review
 
@@ -21,7 +22,8 @@ class ReviewAdapter(var context: Activity, var items:MutableList<Review>) :Adapt
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         var item:Review =items[position]
-        Glide.with(context).load(item.reviewImgs[0]).into(holder.binding.imgEvent)
+        if(item.reviewImgs.size!=0){Glide.with(context).load(item.reviewImgs[0]).into(holder.binding.imgEvent)}
+        else{Glide.with(context).load(R.drawable.profile03).into(holder.binding.imgEvent)}
         holder.binding.tvEvtitle.text=item.reviewTitle
         holder.binding.tvPlaceEval2.text=item.reviewPlace
         holder.binding.tvEquipEval2.text=item.reviewEquip

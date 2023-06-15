@@ -48,13 +48,13 @@ class ReviewFragment:Fragment() {
     fun loadReview(){
         var firebase =FirebaseFirestore.getInstance()
         var collectionRef= firebase.collection("reviews")
-        var map:Map<String,Object> = hashMapOf()
+
         collectionRef.get().addOnSuccessListener {
             Toast.makeText(requireContext(), "aaa"+it.documents.size, Toast.LENGTH_SHORT).show()
             for( changes in it.documentChanges ){
                 var snapshot: DocumentSnapshot= changes.document
-                map= snapshot.data as Map<String, Object>
-                var reviewTemp:Review =Review("", mutableListOf(),"","","","","")
+                var map= snapshot.data as Map<String, Object>
+                var reviewTemp =Review("", mutableListOf(),"","","","","")
                 reviewTemp.id= map.get("id").toString()
                 reviewTemp.reviewTitle = map.get("reviewTitle").toString()
                 reviewTemp.reviewPlace = map.get("reviewPlace").toString()
@@ -68,6 +68,7 @@ class ReviewFragment:Fragment() {
             binding.containerReview.adapter=reviewAdapter
             recyclerView=view?.findViewById(R.id.container_review)!!
             recyclerView.adapter=reviewAdapter
+
         }.addOnFailureListener {
             Toast.makeText(requireContext(), "loadfailed:${it}", Toast.LENGTH_SHORT).show()
         }
@@ -77,5 +78,4 @@ class ReviewFragment:Fragment() {
         super.onViewCreated(view, savedInstanceState)
         loadReview()
     }
-
 }
