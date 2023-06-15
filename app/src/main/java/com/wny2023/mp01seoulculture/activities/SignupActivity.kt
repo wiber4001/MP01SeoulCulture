@@ -103,14 +103,9 @@ class SignupActivity : AppCompatActivity() {
                 Toast.makeText(this@SignupActivity, "영문,숫자,!@#\$%^만 입력가능", Toast.LENGTH_SHORT).show()
             }
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-
-            }
-
+            override fun afterTextChanged(s: Editable?) {}
         })
         //영문,숫자,특수문자만 가능하게 필터걸기
         var inputFilter2 = InputFilter { source, start, end, dest, dstart, dend ->
@@ -142,8 +137,6 @@ class SignupActivity : AppCompatActivity() {
         binding.btnSignup.setOnClickListener { signUp() }
 
     }//onCreate()
-
-
 
     fun checkEmail():Boolean{
         //이메일 검증용 변수

@@ -47,10 +47,10 @@ class MainUnlogActivity : AppCompatActivity() {
                     Toast.makeText(this, "리뷰를 엽니다.", Toast.LENGTH_SHORT).show()
                     clickReview()
                 }
-                R.id.item_edit -> {
-                    Toast.makeText(this, "회원전용 서비스입니다.", Toast.LENGTH_SHORT).show()
-                    clickPhotoEdit()
-                }
+//                R.id.item_edit -> {
+//                    Toast.makeText(this, "회원전용 서비스입니다.", Toast.LENGTH_SHORT).show()
+//                    clickPhotoEdit()
+//                }
                 R.id.item_logout -> {
                     var builder = AlertDialog.Builder(this)
                     builder.setMessage("(회원전용)로그아웃?\n확인:첫화면으로")

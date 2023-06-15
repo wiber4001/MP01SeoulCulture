@@ -76,10 +76,10 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this, "리뷰를 보러갑니다.", Toast.LENGTH_SHORT).show()
                     clickReview()
                 }
-                R.id.item_edit -> {
-                    Toast.makeText(this, "프로필 사진을 변경", Toast.LENGTH_SHORT).show()
-                    clickPhotoEdit()
-                }
+//                R.id.item_edit -> {
+//                    Toast.makeText(this, "프로필 사진을 변경", Toast.LENGTH_SHORT).show()
+//                    clickPhotoEdit()
+//                }
                 R.id.item_logout -> {
                     var builder =AlertDialog.Builder(this)
                     builder.setMessage("로그아웃하시겠습니까?\n확인:첫화면으로")
@@ -123,9 +123,9 @@ class MainActivity : AppCompatActivity() {
     private fun clickFavorit(){
         bnv.selectedItemId=R.id.bnv_favorit
     }
-    private fun clickPhotoEdit(){
-
-    }
+//    private fun clickPhotoEdit(){
+//
+//    }
     private fun clickReview(){
         bnv.selectedItemId=R.id.bnv_review
     }
